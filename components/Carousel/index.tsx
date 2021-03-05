@@ -3,9 +3,10 @@ import styled from '@emotion/styled';
 
 export type CarouselType = {
   images: string[];
+  showDots?: boolean;
 };
 
-function Carousel({ images }: CarouselType): ReactElement {
+function Carousel({ images, showDots }: CarouselType): ReactElement {
   const [currentSlide, setCurrentSlide] = useState<number>(0);
   const slideRef = useRef<HTMLDivElement>(null);
   const hasPrev = useMemo(() => currentSlide !== 0, [currentSlide]);
@@ -26,7 +27,7 @@ function Carousel({ images }: CarouselType): ReactElement {
     <Container>
       <SliderContainer ref={slideRef}>
         {images.map((image) => (
-          <img src={image} alt={image} />
+          <Img src={image} alt={image} />
         ))}
       </SliderContainer>
       {hasPrev && <Button onClick={handleClickPrev}>&lt;</Button>}
@@ -35,23 +36,38 @@ function Carousel({ images }: CarouselType): ReactElement {
           &gt;
         </Button>
       )}
+      {showDots && (
+        <DotsContainer>
+          {images.map((_, index) => (
+            <Dot active={currentSlide === index} />
+          ))}
+        </DotsContainer>
+      )}
     </Container>
   );
 }
 
+Carousel.defaultProps = {
+  showDots: false,
+};
+
 export default Carousel;
 
 const Container = styled.div`
-  width: 150px;
-  height: 150px;
-  overflow: hidden;
+  width: 100%;
+  overflow-x: hidden;
   position: relative;
+  margin-bottom: -20px;
 `;
 
 const SliderContainer = styled.div`
-  width: 100%;
   display: flex;
   transition: all 0.3s ease-in-out;
+`;
+
+const Img = styled.img`
+  width: 100%;
+  flex-shrink: 0;
 `;
 
 type ButtonType = {
@@ -72,4 +88,22 @@ const Button = styled.button<ButtonType>`
   top: 50%;
   transform: translateY(-50%);
   ${({ align = 'left' }) => (align === 'left' ? 'left: 0;' : 'right: 0;')}
+`;
+
+const DotsContainer = styled.div`
+  text-align: center;
+  height: 20px;
+`;
+
+type DotType = {
+  active?: boolean;
+};
+
+const Dot = styled.span<DotType>`
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 8px;
+  background-color: ${({ active }) => (active ? '#0095f6' : '#a8a8a8')};
+  margin: 5px 2px;
 `;
