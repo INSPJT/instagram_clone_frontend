@@ -13,16 +13,16 @@ function Carousel({ images, showDots }: CarouselType): ReactElement {
   const hasNext = useMemo(() => currentSlide < images.length - 1, [images, currentSlide]);
   const handleClickPrev = useCallback(() => {
     setCurrentSlide((prev) => prev - 1);
-  }, [slideRef, currentSlide]);
+  }, []);
   const handleClickNext = useCallback(() => {
     setCurrentSlide((prev) => prev + 1);
-  }, [slideRef, currentSlide]);
+  }, []);
   useEffect(() => {
     if (!slideRef || !slideRef.current) {
       return;
     }
     slideRef.current.style.transform = `translateX(-${currentSlide}00%)`;
-  }, [currentSlide]);
+  }, [slideRef, currentSlide]);
   return (
     <Container>
       <SliderContainer ref={slideRef}>
