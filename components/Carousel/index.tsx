@@ -24,18 +24,20 @@ function Carousel({ images, showDots }: CarouselType): ReactElement {
     slideRef.current.style.transform = `translateX(-${currentSlide}00%)`;
   }, [slideRef, currentSlide]);
   return (
-    <Container>
-      <SliderContainer ref={slideRef}>
-        {images.map((image) => (
-          <Img src={image} alt={image} />
-        ))}
-      </SliderContainer>
-      {hasPrev && <Button onClick={handleClickPrev}>&lt;</Button>}
-      {hasNext && (
-        <Button align="right" onClick={handleClickNext}>
-          &gt;
-        </Button>
-      )}
+    <>
+      <Container>
+        <SliderContainer ref={slideRef}>
+          {images.map((image) => (
+            <Img src={image} alt={image} />
+          ))}
+        </SliderContainer>
+        {hasPrev && <Button onClick={handleClickPrev}>&lt;</Button>}
+        {hasNext && (
+          <Button align="right" onClick={handleClickNext}>
+            &gt;
+          </Button>
+        )}
+      </Container>
       {showDots && (
         <DotsContainer>
           {images.map((_, index) => (
@@ -43,7 +45,7 @@ function Carousel({ images, showDots }: CarouselType): ReactElement {
           ))}
         </DotsContainer>
       )}
-    </Container>
+    </>
   );
 }
 
@@ -57,7 +59,6 @@ const Container = styled.div`
   width: 100%;
   overflow-x: hidden;
   position: relative;
-  margin-bottom: -20px;
 `;
 
 const SliderContainer = styled.div`
@@ -93,6 +94,7 @@ const Button = styled.button<ButtonType>`
 const DotsContainer = styled.div`
   text-align: center;
   height: 20px;
+  margin-bottom: -20px;
 `;
 
 type DotType = {
