@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
-import * as logo from 'asset/Instagram_logo.png';
+import * as logo from 'asset/instagramLogo.png';
 
 export type SignUpInputList = {
   email: string;
@@ -18,10 +18,11 @@ export const Enrollment = () => {
   });
   const { email, name, nickname, password } = inputs;
   const [buttonActive, setButtonActive] = useState<boolean>(false);
+  const [showSignUpValidResult, setShowSignUpValidResult] = useState<boolean>(false);
+
   const enrollmentValidation = (): void => {
-    //각 정규식 추가 예정
     let value = false;
-    if (email.length > 0 && name.length > 0 && nickname.length > 0 && password.length > 6) value = true;
+    if (email && name && nickname && password.length > 6) value = true;
     setButtonActive(value);
   };
 
@@ -32,22 +33,49 @@ export const Enrollment = () => {
     });
     enrollmentValidation();
   };
+
+  const onClickHandler = (): void => {
+
+    let nameRegex = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/.test(name);
+    let nicknameRegex = /^[a-zA-Z0-9_.-ㄱ-ㅎ|ㅏ-ㅣ|가-힣]*$/.test(nickname);
+    let emailRegex = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/.test(email)
+
+    if (nameRegex && nicknameRegex && emailRegex) {
+      //페이지 이동
+    } else {
+      setShowSignUpValidResult(true);
+    }
+
+  }
+
+  const logInButtonHandler = (): void => {
+    //로그인 페이지 이동
+
+  }
+
+
+
   return (
     <Container>
       <SignUpContainer>
+        <Logo src={logo}></Logo>
+
         <HeaderText>친구들의 사진과 동영상을 보려면 가입하세요.</HeaderText>
         <Form>
           <Input
-            placeholder="휴대폰 번호 또는 이메일 주소"
+            placeholder="이메일 주소"
             value={email}
-            name={email}
+            name={'email'}
             onChange={onChangeHandler}
           ></Input>
-          <Input placeholder="성명" value={name} name={name} onChange={onChangeHandler}></Input>
-          <Input placeholder="사용자 이름" value={nickname} name={nickname} onChange={onChangeHandler}></Input>
-          <Input placeholder="비밀번호" value={password} name={password} onChange={onChangeHandler}></Input>
+          <Input placeholder="성명" value={name} name={'name'} onChange={onChangeHandler}></Input>
+          <Input placeholder="사용자 이름" value={nickname} name={'nickname'} onChange={onChangeHandler}></Input>
+          <Input placeholder="비밀번호" value={password} name={'password'} onChange={onChangeHandler}></Input>
         </Form>
-        <Button type={'submit'} buttonActive={buttonActive}>
+
+        {showSignUpValidResult && <IsValidText>가입 형식에 맞지 않습니다.</IsValidText>}
+
+        <Button disabled={!buttonActive} onClick={onClickHandler} type={'submit'} buttonActive={buttonActive}>
           가입
         </Button>
 
@@ -56,7 +84,7 @@ export const Enrollment = () => {
 
       <IsLoginContainer>
         <h5>계정이 있으신가요?</h5>
-        <LoginButton>로그인</LoginButton>
+        <LoginButton onClick={logInButtonHandler}>로그인</LoginButton>
       </IsLoginContainer>
     </Container>
   );
@@ -93,7 +121,8 @@ const IsLoginContainer = styled.div`
 `;
 const HeaderText = styled.text`
   font-size: 17px;
-  color: rgba(105, 105, 105, 1);
+  color: #8e8e8e;
+  font-weight:600;
 `;
 const Image = styled.img`
   width: 175px;
@@ -108,7 +137,6 @@ const Input = styled.input`
   margin: 2px;
   border: 1px solid rgb(220, 220, 220);
   border-radius: 5px;
-  background-color: rgba(220, 220, 220, 0.3);
   box-sizing: border-box;
   padding-left: 10px;
 `;
@@ -132,6 +160,12 @@ const Text = styled.text`
   color: rgb(192, 192, 192);
 `;
 
+const IsValidText = styled.text`
+border:1px solid red;
+font-size:15px;
+color:red;
+`
+
 const LoginButton = styled.button`
   all: unset;
   font-size: 15px;
@@ -140,3 +174,9 @@ const LoginButton = styled.button`
 `;
 
 export default Enrollment;
+
+const Logo = styled.img`
+width:175px;
+height:50px;
+resize-mode:cover;
+`
