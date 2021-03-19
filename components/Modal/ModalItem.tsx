@@ -1,12 +1,12 @@
 import styled from '@emotion/styled';
 
-export type ModalItemType = {
-  bold: boolean;
+export type ModalItemProps = {
+  bold?: true | false;
   color?: 'red' | 'blue';
   // undefined면 black default
 };
 
-export const ModalItem = styled.button<ModalItemType>`
+export const ModalItem = styled.button<ModalItemProps>`
   cursor: pointer;
   text-align: center;
   width: 200px;
