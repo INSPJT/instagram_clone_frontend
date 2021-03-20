@@ -13,13 +13,11 @@ function Modal({ children }: ModalProps) {
   }
 
   return ReactDOM.createPortal(
-    <>
       <ModalOverlay>
         <ModalWrapper>
           <ModalContent>{children}</ModalContent>
         </ModalWrapper>
-      </ModalOverlay>
-    </>,
+      </ModalOverlay>,
     modal,
   );
 }
