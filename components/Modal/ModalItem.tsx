@@ -1,12 +1,28 @@
 import styled from '@emotion/styled';
+import React from 'react';
 
 export type ModalItemProps = {
+  children: React.ReactNode;
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
   bold?: boolean;
   color?: 'red' | 'blue';
-  // undefined면 black default
 };
 
-const ModalItem = styled.button<ModalItemProps>`
+const ModalItem = (props: ModalItemProps) => {
+  const { children, onClick, bold, color } = props;
+  return (
+    <StyledModalItem bold={bold} color={color} onClick={onClick}>
+      {children}
+    </StyledModalItem>
+  );
+};
+
+ModalItem.defaultProps = {
+  bold: false,
+  color: undefined,
+};
+
+const StyledModalItem = styled.button<ModalItemProps>`
   cursor: pointer;
   text-align: center;
   width: 200px;
