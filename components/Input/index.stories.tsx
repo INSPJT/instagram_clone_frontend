@@ -15,22 +15,3 @@ export const Default = Template.bind({});
 Default.args = {
   children: '팔로잉'
 };
-
-export const Blue = Template.bind({});
-Blue.args = {
-  theme: 'blue',
-  children: '팔로우'
-};
-
-export const DefaultLoading = Template.bind({});
-DefaultLoading.args = {
-  loading: true,
-  children: '팔로우'
-};
-
-export const BlueLoading = Template.bind({});
-BlueLoading.args = {
-  loading: true,
-  theme: 'blue',
-  children: '팔로우'
-};
