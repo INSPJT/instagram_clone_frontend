@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import Layout from '../components/Layout';
-import Enrollment from '../components/Enrollment';
+import SignIn from '../components/SignIn';
 
 const IndexPage = () => (
-  <Enrollment></Enrollment>
+  <SignIn></SignIn>
   // <Layout title="Home | Next.js + TypeScript Example">
   //   <h1>Hello Next.js 👋</h1>
   //   <p>

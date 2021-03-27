@@ -13,7 +13,7 @@ export type SignUpInputList = {
   password: string
 };
 
-export const Enrollment = () => {
+export const SignIn = () => {
   const [inputs, setInputs] = useState<SignUpInputList>({
     displayId: "",
     email: "",
@@ -174,7 +174,7 @@ const LoginButton = styled.span`
   }
 `;
 
-export default Enrollment;
+export default SignIn;
 
 const Logo = styled.img`
 width:175px;
