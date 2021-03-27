@@ -157,11 +157,14 @@ font-size:15px;
 color:red;
 `
 
-const LoginButton = styled.text`
+const LoginButton = styled.span`
   all: unset;
   font-size: 15px;
   margin-left: 5px;
   color: rgba(0, 149, 246, 1);
+  &:hover {
+    cursor:pointer;
+  }
 `;
 
 export default Enrollment;
