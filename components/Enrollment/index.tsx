@@ -7,20 +7,20 @@ import Input from '../Input';
 import * as logo from 'asset/instagramLogo.png';
 
 export type SignUpInputList = {
-  email: string;
-  name: string;
-  nickname: string;
-  password: string;
+  displayId: string,
+  email: string,
+  nickname: string,
+  password: string
 };
 
 export const Enrollment = () => {
   const [inputs, setInputs] = useState<SignUpInputList>({
-    email: '',
-    name: '',
-    nickname: '',
-    password: '',
+    displayId: "",
+    email: "",
+    nickname: "",
+    password: ""
   });
-  const { email, name, nickname, password } = inputs;
+  const { displayId, email, nickname, password } = inputs;
   const [buttonActive, setButtonActive] = useState<boolean>(false);
   const [showSignUpValidResult, setShowSignUpValidResult] = useState<boolean>(false);
   const enrollmentValidation = (): void => {
@@ -39,11 +39,11 @@ export const Enrollment = () => {
 
   const onClickHandler = (): void => {
 
-    let nameRegex = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/.test(name);
+    let displayIdRegex = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/.test(displayId);
     let nicknameRegex = /^[a-zA-Z0-9_.-ㄱ-ㅎ|ㅏ-ㅣ|가-힣]*$/.test(nickname);
     let emailRegex = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/.test(email)
-    console.log(`이름 형식 : ${nameRegex}, 닉네임 형식 : ${nicknameRegex}, 이메일 형식 : ${emailRegex}`);
-    if (nameRegex && nicknameRegex && emailRegex) {
+    console.log(`이름 형식 : ${displayIdRegex}, 닉네임 형식 : ${nicknameRegex}, 이메일 형식 : ${emailRegex}`);
+    if (displayIdRegex && nicknameRegex && emailRegex) {
       Router.push({
         pathname: '/login',
       });
@@ -63,7 +63,7 @@ export const Enrollment = () => {
             name={'email'}
             onChange={onChangeHandler}
           />
-          <Input placeholder="성명" value={name} name={'name'} onChange={onChangeHandler} />
+          <Input placeholder="성명" value={displayId} name={'displayId'} onChange={onChangeHandler} />
           <Input placeholder="사용자 이름" value={nickname} name={'nickname'} onChange={onChangeHandler} />
           <Input placeholder="비밀번호" value={password} name={'password'} onChange={onChangeHandler} />
         </Form>
