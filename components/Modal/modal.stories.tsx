@@ -9,11 +9,13 @@ export default {
     component : Modal,
 } as Meta;
 
+function consoleMessage () {
+  console.log('print')
+}
+
 export const Template: Story<ModalProps> = () => (
     <Modal>
-        <ModalItem bold color={"red"}>신고하기</ModalItem>
-        <ModalItem bold color={"blue"}>킹동하짱</ModalItem>
-        <ModalItem bold>공유하기</ModalItem>
+      <ModalItem onClick={consoleMessage}>킹동하</ModalItem>
     </Modal>
 );
 
