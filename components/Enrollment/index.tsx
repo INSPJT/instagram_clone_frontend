@@ -61,9 +61,9 @@ export const Enrollment = () => {
             name={'email'}
             onChange={onChangeHandler}
           ></Input>
-          <Input placeholder="성명" value={name} name={'name'} onChange={onChangeHandler}></Input>
-          <Input placeholder="사용자 이름" value={nickname} name={'nickname'} onChange={onChangeHandler}></Input>
-          <Input placeholder="비밀번호" value={password} name={'password'} onChange={onChangeHandler}></Input>
+          <Input placeholder="성명" value={name} name={'name'} onChange={onChangeHandler} />
+          <Input placeholder="사용자 이름" value={nickname} name={'nickname'} onChange={onChangeHandler} />
+          <Input placeholder="비밀번호" value={password} name={'password'} onChange={onChangeHandler} />
         </Form>
         {showSignUpValidResult && <IsValidText>가입 형식에 맞지 않습니다.</IsValidText>}
         <Button disabled={!buttonActive} onClick={onClickHandler} type={'submit'} buttonActive={buttonActive}>
@@ -71,12 +71,12 @@ export const Enrollment = () => {
         </Button>
         <Text>가입하면 Instagram의 약관, 데이터 정책 및 쿠키 정책에 동의하게 됩니다.</Text>
       </SignUpContainer>
-      <IsLoginContainer>
+      <LoginContainer>
         <h5>계정이 있으신가요?</h5>
         <Link href="/home">
           <LoginButton>로그인</LoginButton>
           </Link>
-      </IsLoginContainer>
+      </LoginContainer>
     </Container>
   );
 };
@@ -100,7 +100,7 @@ const SignUpContainer = styled.div`
   padding: 0 15px;
 `;
 
-const IsLoginContainer = styled.div`
+const LoginContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
