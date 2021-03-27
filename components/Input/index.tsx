@@ -11,10 +11,10 @@ export type InputType = {
 function Input({placeholder, value, name, onChange}:InputType):React.ReactElement {
     return(
         <StyledInput
-                placeholder={placeholder}
-                value={value}
-                name={name}
-                onChange={()=>{onChange && onChange()}}
+            placeholder={placeholder}
+            value={value}
+            name={name}
+            onChange={(e)=>{onChange && onChange(e)}}
         />
     )
 }

@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import Link from 'next/link';
 import Router from 'next/router'
 import Input from '../Input';
-
+import axios from 'axios';
 import * as logo from 'asset/instagramLogo.png';
 
 export type SignUpInputList = {
@@ -25,7 +25,7 @@ export const Enrollment = () => {
   const [showSignUpValidResult, setShowSignUpValidResult] = useState<boolean>(false);
   const enrollmentValidation = (): void => {
     let value = false;
-    if (email && name && nickname && password.length > 6) value = true;
+    if (email && displayId && nickname && password.length > 6) value = true;
     setButtonActive(value);
   };
 
@@ -44,9 +44,24 @@ export const Enrollment = () => {
     let emailRegex = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/.test(email)
     console.log(`이름 형식 : ${displayIdRegex}, 닉네임 형식 : ${nicknameRegex}, 이메일 형식 : ${emailRegex}`);
     if (displayIdRegex && nicknameRegex && emailRegex) {
-      Router.push({
-        pathname: '/login',
-      });
+      axios({
+        method: 'post',
+        url: 'http://127.0.0.1:8080/auth/signup',
+        data: {
+          displayId,
+          email,
+          nickname,
+          password
+        }
+      })
+      .then(()=>{
+        console.log('회원가입 완료');
+        Router.push({
+          pathname: '/login',
+        });
+      })
+      .catch((error)=>console.log(error));
+      
     } else {
       setShowSignUpValidResult(true);
     }
