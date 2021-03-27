@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import styled from '@emotion/styled';
 import Link from 'next/link';
 import Router from 'next/router'
+import Input from '../Input';
+
 import * as logo from 'asset/instagramLogo.png';
 
 export type SignUpInputList = {
@@ -60,7 +62,7 @@ export const Enrollment = () => {
             value={email}
             name={'email'}
             onChange={onChangeHandler}
-          ></Input>
+          />
           <Input placeholder="성명" value={name} name={'name'} onChange={onChangeHandler} />
           <Input placeholder="사용자 이름" value={nickname} name={'nickname'} onChange={onChangeHandler} />
           <Input placeholder="비밀번호" value={password} name={'password'} onChange={onChangeHandler} />
@@ -121,16 +123,6 @@ const Image = styled.img`
 `;
 
 const Form = styled.form``;
-
-const Input = styled.input`
-  height: 38px;
-  width: 270px;
-  margin: 2px;
-  border: 1px solid rgb(220, 220, 220);
-  border-radius: 5px;
-  box-sizing: border-box;
-  padding-left: 10px;
-`;
 
 type ButtonType = {
   buttonActive?: boolean;
