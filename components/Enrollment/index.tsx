@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
+import Link from 'next/link';
 import * as logo from 'asset/instagramLogo.png';
 
 export type SignUpInputList = {
@@ -48,18 +49,10 @@ export const Enrollment = () => {
 
   }
 
-  const logInButtonHandler = (): void => {
-    //로그인 페이지 이동
-
-  }
-
-
-
   return (
     <Container>
       <SignUpContainer>
         <Logo src={logo}></Logo>
-
         <HeaderText>친구들의 사진과 동영상을 보려면 가입하세요.</HeaderText>
         <Form>
           <Input
@@ -72,19 +65,17 @@ export const Enrollment = () => {
           <Input placeholder="사용자 이름" value={nickname} name={'nickname'} onChange={onChangeHandler}></Input>
           <Input placeholder="비밀번호" value={password} name={'password'} onChange={onChangeHandler}></Input>
         </Form>
-
         {showSignUpValidResult && <IsValidText>가입 형식에 맞지 않습니다.</IsValidText>}
-
         <Button disabled={!buttonActive} onClick={onClickHandler} type={'submit'} buttonActive={buttonActive}>
           가입
         </Button>
-
         <Text>가입하면 Instagram의 약관, 데이터 정책 및 쿠키 정책에 동의하게 됩니다.</Text>
       </SignUpContainer>
-
       <IsLoginContainer>
         <h5>계정이 있으신가요?</h5>
-        <LoginButton onClick={logInButtonHandler}>로그인</LoginButton>
+        <Link href="/home">
+          <LoginButton>로그인</LoginButton>
+          </Link>
       </IsLoginContainer>
     </Container>
   );
@@ -166,7 +157,7 @@ font-size:15px;
 color:red;
 `
 
-const LoginButton = styled.button`
+const LoginButton = styled.text`
   all: unset;
   font-size: 15px;
   margin-left: 5px;
