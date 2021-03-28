@@ -1,13 +1,14 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from '@emotion/styled';
 
 export type InputType = {
     placeholder?: string
-    value?: string;
-    name?: string;
-    onChange?: Function;
+    value?: string
+    name?: string
+    onChange?: Function
     label?: string
     theme?: string
+    inputType?: string
 }
 
 function Input({placeholder, value, name, onChange, label, theme}:InputType):React.ReactElement {
@@ -20,19 +21,28 @@ function Input({placeholder, value, name, onChange, label, theme}:InputType):Rea
         />
     )
 }
-export function Input2({value, name, onChange, label='', theme='white'}:InputType):React.ReactElement {
+
+export function Input2({value, name, onChange, label='', theme='white', inputType="text"}:InputType):React.ReactElement {
+    const [toggle, setToggle] = useState(false);
+    const [type, setType] = useState(inputType);
+
+    const onClickHandler = () => {
+        setType(toggle ? 'text' : 'password');
+        setToggle(!toggle);
+    }
     return(
-        <Label>
-            <Inn placeholder=" " value={value} name={name} onChange={e=>{onChange && onChange(e)}} />
+        <Div>
+            <Inn type={type} theme={theme} placeholder=" " value={value} name={name} onChange={e=>{onChange && onChange(e)}} />
             <Span>{label}</Span>
-        </Label>
+            {inputType !== 'password' && <Pass onClick={onClickHandler}>{toggle ? '숨기기' : '비밀번호 표시'}</Pass>}
+        </Div>
     )
 }
 
 export default Input;
 
   
-const Label = styled.label`
+const Div = styled.div`
     margin:20px 0;
     position:relative;
     display:inline-block;
@@ -49,6 +59,16 @@ const Span = styled.span`
     transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
     opacity:0.5;
 `
+const Pass = styled.button`
+    all:unset;
+    padding:10px;
+    position:absolute;
+    right:0;
+    top:0;
+    opacity:1;
+    font-weight: 900;
+`
+
 const Inn = styled.input`
     padding:10px;
     &:focus + span{
