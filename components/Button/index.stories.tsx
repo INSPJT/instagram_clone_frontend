@@ -47,3 +47,16 @@ BlueSignup.args = {
   children: '가입하기',
   full: true,
 };
+
+export const DefaultSignin = Template.bind({});
+DefaultSignin.args = {
+  children: '가입하기',
+  width: 'wide',  
+};
+
+export const BlueSignin = Template.bind({});
+BlueSignin.args = {
+  theme: 'blue',
+  children: '가입하기',
+  width: 'wide',
+};
