@@ -51,11 +51,11 @@ BlueSignup.args = {
 export const DefaultSignin = Template.bind({});
 DefaultSignin.args = {
   children: '가입하기',
-  width: 'wide',  
+  width: 'wide',
 };
 
-export const BlueSignin = Template.bind({});
-BlueSignin.args = {
+export const BlueSignup = Template.bind({});
+BlueSignup.args = {
   theme: 'blue',
   children: '가입하기',
   width: 'wide',
