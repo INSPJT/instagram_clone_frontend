@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from '@emotion/styled';
 import Link from 'next/link';
 import Router from 'next/router'
-import Input from '../Input';
+import Input, {Input2} from '../Input';
 import axios from 'axios';
 import * as logo from 'asset/instagramLogo.png';
 
@@ -81,6 +81,7 @@ export const SignIn = () => {
           <Input placeholder="성명" value={displayId} name={'displayId'} onChange={onChangeHandler} />
           <Input placeholder="사용자 이름" value={nickname} name={'nickname'} onChange={onChangeHandler} />
           <Input placeholder="비밀번호" value={password} name={'password'} onChange={onChangeHandler} />
+          <Input2 placeholder="비밀번호" value={password} name={'password'} onChange={onChangeHandler} />
         </Form>
         {showSignUpValidResult && <IsValidText>가입 형식에 맞지 않습니다.</IsValidText>}
         <Button disabled={!buttonActive} onClick={onClickHandler} type={'submit'} buttonActive={buttonActive}>
