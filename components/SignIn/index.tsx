@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from '@emotion/styled';
 import Link from 'next/link';
 import Router from 'next/router'
-import Input, {Input2} from '../Input';
+import Input from '../Input';
 import axios from 'axios';
 import * as logo from 'asset/instagramLogo.png';
 
@@ -54,14 +54,13 @@ export const SignIn = () => {
           password
         }
       })
-      .then(()=>{
-        console.log('회원가입 완료');
-        Router.push({
-          pathname: '/login',
-        });
-      })
-      .catch((error)=>console.log(error));
-      
+        .then(() => {
+          console.log('회원가입 완료');
+          Router.push({
+            pathname: '/login',
+          });
+        })
+        .catch((error) => console.log(error));
     } else {
       setShowSignUpValidResult(true);
     }
@@ -73,15 +72,15 @@ export const SignIn = () => {
         <HeaderText>친구들의 사진과 동영상을 보려면 가입하세요.</HeaderText>
         <Form>
           <Input
-            placeholder="이메일 주소"
+            label="이메일 주소"
             value={email}
+            theme="gray"
             name={'email'}
             onChange={onChangeHandler}
           />
-          <Input placeholder="성명" value={displayId} name={'displayId'} onChange={onChangeHandler} />
-          <Input placeholder="사용자 이름" value={nickname} name={'nickname'} onChange={onChangeHandler} />
-          <Input placeholder="비밀번호" value={password} name={'password'} onChange={onChangeHandler} />
-          <Input2 placeholder="비밀번호" value={password} name={'password'} onChange={onChangeHandler} label={'비밀'}/>
+          <Input label="성명" theme="gray" value={displayId} name={'displayId'} onChange={onChangeHandler} />
+          <Input label="사용자 이름" theme="gray" value={nickname} name={'nickname'} onChange={onChangeHandler} />
+          <Input label="비밀번호" inputType="password" theme="gray" value={password} name={'password'} onChange={onChangeHandler} />
         </Form>
         {showSignUpValidResult && <IsValidText>가입 형식에 맞지 않습니다.</IsValidText>}
         <Button disabled={!buttonActive} onClick={onClickHandler} type={'submit'} buttonActive={buttonActive}>

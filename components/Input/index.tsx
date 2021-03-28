@@ -1,49 +1,39 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import styled from '@emotion/styled';
 
 export type InputType = {
-    placeholder?: string
     value?: string
     name?: string
-    onChange?: React.ChangeEvent<HTMLInputElement>
+    onChange?(event: React.ChangeEvent<HTMLInputElement>): void;
     label?: string
-    theme?: string
+    theme?: 'gray' | 'white'
     inputType?: 'text' | 'password' | 'number'
 }
 
-function Input({placeholder, value, name, onChange, label, theme}:InputType):React.ReactElement {
-    return(
-        <StyledInput
-            placeholder={placeholder}
-            value={value}
-            name={name}
-            onChange={(e)=>{onChange && onChange(e)}}
-        />
-    )
-}
-
-export function Input2({value, name, onChange, label='', theme='white', inputType="text"}:InputType):React.ReactElement {
+export function Input({ value, name, onChange, label = '', theme = 'white', inputType = "text" }: InputType): React.ReactElement {
     const [toggle, setToggle] = useState(false);
     const [type, setType] = useState(inputType);
 
     const onClickHandler = () => {
-        setType(toggle ? 'text' : 'password');
+        setType(!toggle ? 'text' : 'password');
         setToggle(!toggle);
     }
-    return(
+    return (
         <Div>
-            <Inn type={type} theme={theme} placeholder=" " value={value} name={name} onChange={e=>{onChange && onChange(e)}} />
+            <Inn type={type} theme={theme} placeholder=" " value={value} name={name} onChange={e => { onChange && onChange(e) }} />
             <Span>{label}</Span>
-            {inputType === 'password' && <IsDisplayPassword type="button" onClick={onClickHandler}>{toggle ? '비밀번호 표시' : '숨기기'}</IsDisplayPassword>}
+            {inputType === 'password' && <IsDisplayPassword type="button" onClick={onClickHandler}>{toggle ? '숨기기' : '비밀번호 표시'}</IsDisplayPassword>}
         </Div>
     )
 }
 
 export default Input;
 
-  
+
 const Div = styled.div`
-    margin:20px 0;
+    height: 38px;
+    width: 270px;
+    margin: 5px 0;
     position:relative;
     display:inline-block;
 `
@@ -70,27 +60,18 @@ const IsDisplayPassword = styled.button`
 `
 
 const Inn = styled.input`
-    background:${props=>props.theme === 'white' ? 'white' : ' rgba(240, 240, 240, 1)'};
-    padding:10px;
+    width:100%;
+    height:100%;
+    background:${props => props.theme === 'white' ? 'white' : ' rgba(240, 240, 240, 1)'};
     border: 1px solid rgb(220, 220, 220);
     border-radius: 5px;
+    padding-left:10px;
     &:focus + span{
-        opacity:1;
-        transform: scale(0.75) translateY(-100%) translateX(-20px);
-        
+        opacity:0.5;
+        transform: scale(0.75) translateY(-40%) translateX(-15px);
     }
     &:not(:placeholder-shown) + span{
-        opacity:1;
-        transform: scale(0.75) translateY(-100%) translateX(-20px);
+        opacity:0.5;
+        transform: scale(0.75) translateY(-40%) translateX(-15px);   
     }
 `
-
-const StyledInput = styled.input`
-  height: 38px;
-  width: 270px;
-  margin: 2px;
-  border: 1px solid rgb(220, 220, 220);
-  border-radius: 5px;
-  box-sizing: border-box;
-  padding-left: 10px;
-`;
