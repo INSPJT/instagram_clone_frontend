@@ -5,10 +5,10 @@ export type InputType = {
     placeholder?: string
     value?: string
     name?: string
-    onChange?: Function
+    onChange?: React.ChangeEvent<HTMLInputElement>
     label?: string
     theme?: string
-    inputType?: string
+    inputType?: 'text' | 'password' | 'number'
 }
 
 function Input({placeholder, value, name, onChange, label, theme}:InputType):React.ReactElement {
@@ -34,7 +34,7 @@ export function Input2({value, name, onChange, label='', theme='white', inputTyp
         <Div>
             <Inn type={type} theme={theme} placeholder=" " value={value} name={name} onChange={e=>{onChange && onChange(e)}} />
             <Span>{label}</Span>
-            {inputType !== 'password' && <Pass type="button" onClick={onClickHandler}>{toggle ? '숨기기' : '비밀번호 표시'}</Pass>}
+            {inputType === 'password' && <IsDisplayPassword type="button" onClick={onClickHandler}>{toggle ? '비밀번호 표시' : '숨기기'}</IsDisplayPassword>}
         </Div>
     )
 }
@@ -59,7 +59,7 @@ const Span = styled.span`
     transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
     opacity:0.5;
 `
-const Pass = styled.button`
+const IsDisplayPassword = styled.button`
     all:unset;
     padding:10px;
     position:absolute;
@@ -70,14 +70,18 @@ const Pass = styled.button`
 `
 
 const Inn = styled.input`
+    background:${props=>props.theme === 'white' ? 'white' : ' rgba(240, 240, 240, 1)'};
     padding:10px;
+    border: 1px solid rgb(220, 220, 220);
+    border-radius: 5px;
     &:focus + span{
         opacity:1;
-        transform: scale(0.75) translateY(-100%) translateX(-30px);
+        transform: scale(0.75) translateY(-100%) translateX(-20px);
+        
     }
     &:not(:placeholder-shown) + span{
         opacity:1;
-        transform: scale(0.75) translateY(-100%) translateX(-30px);
+        transform: scale(0.75) translateY(-100%) translateX(-20px);
     }
 `
 
