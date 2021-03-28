@@ -14,10 +14,10 @@ export type InputType = {
 function Input({placeholder, value, name, onChange, label, theme}:InputType):React.ReactElement {
     return(
         <StyledInput
-                placeholder={placeholder}
-                value={value}
-                name={name}
-                onChange={()=>{onChange && onChange()}}
+            placeholder={placeholder}
+            value={value}
+            name={name}
+            onChange={(e)=>{onChange && onChange(e)}}
         />
     )
 }
@@ -34,7 +34,7 @@ export function Input2({value, name, onChange, label='', theme='white', inputTyp
         <Div>
             <Inn type={type} theme={theme} placeholder=" " value={value} name={name} onChange={e=>{onChange && onChange(e)}} />
             <Span>{label}</Span>
-            {inputType !== 'password' && <Pass onClick={onClickHandler}>{toggle ? '숨기기' : '비밀번호 표시'}</Pass>}
+            {inputType !== 'password' && <Pass type="button" onClick={onClickHandler}>{toggle ? '숨기기' : '비밀번호 표시'}</Pass>}
         </Div>
     )
 }
