@@ -2,6 +2,7 @@ import React, { useState, useCallback } from 'react';
 import styled from '@emotion/styled';
 
 export type InputType = {
+    placeholder?: string
     value?: string
     name?: string
     onChange?(event: React.ChangeEvent<HTMLInputElement>): void;
@@ -10,20 +11,29 @@ export type InputType = {
     inputType?: 'text' | 'password' | 'number'
 }
 
-function Input({ value, name, onChange, label = '', theme = 'white', inputType = "text" }: InputType): React.ReactElement {
+function Input({ value, name, onChange, label = '', theme = 'white', inputType = "text", placeholder = "" }: InputType): React.ReactElement {
     const [toggle, setToggle] = useState(false);
     const [type, setType] = useState(inputType);
-
     const onClickToggle = useCallback(() => {
         setType(!toggle ? 'text' : 'password');
         setToggle(!toggle);
     }, [toggle]);
+
     return (
-        <Container theme={theme}>
-            <StyledInput type={type} placeholder=" " value={value} name={name} onChange={e => { onChange && onChange(e) }} />
-            <Label>{label}</Label>
-            {inputType === 'password' && <ToggleButton type="button" onClick={onClickToggle}>{toggle ? '숨기기' : '비밀번호 표시'}</ToggleButton>}
-        </Container>
+        <>
+            {label ?
+                <Container theme={theme}>
+                    <StyledInput type={type} placeholder=" " value={value} name={name} onChange={e => { onChange && onChange(e) }} />
+                    <Label>{label}</Label>
+                    {inputType === 'password' && <ToggleButton type="button" onClick={onClickToggle}>{toggle ? '숨기기' : '비밀번호 표시'}</ToggleButton>}
+                </Container> :
+                <Container theme={theme}>
+                    <StyledInput type={type} placeholder={placeholder} value={value} name={name} onChange={e => { onChange && onChange(e) }} />
+                    {inputType === 'password' && <ToggleButton type="button" onClick={onClickToggle}>{toggle ? '숨기기' : '비밀번호 표시'}</ToggleButton>}
+                </Container>
+            }
+
+        </>
     )
 }
 
