@@ -27,3 +27,8 @@ GrayTheme.args = {
   label: '닉네임',
   theme: 'gray'
 };
+
+export const NotLabel = Template.bind({});
+NotLabel.args = {
+  placeholder: '이메일'
+};
