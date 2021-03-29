@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import styled from '@emotion/styled';
 
 export type InputType = {
@@ -10,27 +10,30 @@ export type InputType = {
     inputType?: 'text' | 'password' | 'number'
 }
 
-export function Input({ value, name, onChange, label = '', theme = 'white', inputType = "text" }: InputType): React.ReactElement {
+function Input({ value, name, onChange, label = '', theme = 'white', inputType = "text" }: InputType): React.ReactElement {
     const [toggle, setToggle] = useState(false);
     const [type, setType] = useState(inputType);
 
-    const onClickHandler = () => {
+    const onClickToggle = useCallback(() => {
         setType(!toggle ? 'text' : 'password');
         setToggle(!toggle);
-    }
+    }, [toggle]);
     return (
-        <Div>
-            <Inn type={type} theme={theme} placeholder=" " value={value} name={name} onChange={e => { onChange && onChange(e) }} />
-            <Span>{label}</Span>
-            {inputType === 'password' && <IsDisplayPassword type="button" onClick={onClickHandler}>{toggle ? '숨기기' : '비밀번호 표시'}</IsDisplayPassword>}
-        </Div>
+        <Container theme={theme}>
+            <StyledInput type={type} placeholder=" " value={value} name={name} onChange={e => { onChange && onChange(e) }} />
+            <Label>{label}</Label>
+            {inputType === 'password' && <ToggleButton type="button" onClick={onClickToggle}>{toggle ? '숨기기' : '비밀번호 표시'}</ToggleButton>}
+        </Container>
     )
 }
 
 export default Input;
 
 
-const Div = styled.div`
+const Container = styled.div`
+    border: 3px solid rgb(220, 220, 220);
+    border-radius: 5px;
+    background:${props => props.theme === 'white' ? 'white' : ' rgba(240, 240, 240, 1)'};
     height: 38px;
     width: 270px;
     margin: 5px 0;
@@ -38,7 +41,7 @@ const Div = styled.div`
     display:inline-block;
 `
 
-const Span = styled.span`
+const Label = styled.span`
     padding:10px;
     pointer-events: none;
     position:absolute;
@@ -49,7 +52,7 @@ const Span = styled.span`
     transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
     opacity:0.5;
 `
-const IsDisplayPassword = styled.button`
+const ToggleButton = styled.button`
     all:unset;
     padding:10px;
     position:absolute;
@@ -59,12 +62,11 @@ const IsDisplayPassword = styled.button`
     font-weight: 900;
 `
 
-const Inn = styled.input`
-    width:100%;
+const StyledInput = styled.input`
+    all:unset;
+    width:50%;
     height:100%;
-    background:${props => props.theme === 'white' ? 'white' : ' rgba(240, 240, 240, 1)'};
-    border: 1px solid rgb(220, 220, 220);
-    border-radius: 5px;
+    
     padding-left:10px;
     &:focus + span{
         opacity:0.5;

@@ -13,7 +13,7 @@ export type SignUpInputList = {
   password: string
 };
 
-export const SignIn = () => {
+const SignUp = () => {
   const [inputs, setInputs] = useState<SignUpInputList>({
     displayId: "",
     email: "",
@@ -174,7 +174,7 @@ const LoginButton = styled.span`
   }
 `;
 
-export default SignIn;
+export default SignUp;
 
 const Logo = styled.img`
 width:175px;
