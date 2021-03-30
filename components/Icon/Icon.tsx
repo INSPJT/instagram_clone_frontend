@@ -1,5 +1,4 @@
-import { inherits } from 'node:util';
-import React, { ReactElement } from 'react';
+import React, { CSSProperties, ReactElement } from 'react';
 import * as svg from './svg';
 
 export type IconTypes = keyof typeof svg;
@@ -7,6 +6,7 @@ export type IconProps = {
   name: IconTypes;
   size: keyof typeof sizes;
   color?: string;
+  style?: CSSProperties;
 };
 export type attributeType = {
   width: number;
@@ -16,7 +16,7 @@ export type attributeType = {
 
 const defaultProps = { size: 'default' };
 
-function Icon({ name, size, color }: IconProps): ReactElement {
+function Icon({ name, size, color, style }: IconProps): ReactElement {
   const attribute: attributeType = {
     width: sizes[size],
     height: sizes[size],
@@ -26,6 +26,7 @@ function Icon({ name, size, color }: IconProps): ReactElement {
   }
   return React.createElement(svg[name], {
     ...attribute,
+    style,
   });
 }
 

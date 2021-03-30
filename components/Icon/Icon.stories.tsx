@@ -66,3 +66,9 @@ Newpost.args = {
   name: 'newpost',
   size: 'big',
 };
+
+export const Back = Template.bind({});
+Back.args = {
+  name: 'back',
+  size: 'big',
+};

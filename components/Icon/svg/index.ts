@@ -7,3 +7,4 @@ export { ReactComponent as comment } from './comment.svg';
 export { ReactComponent as share } from './share.svg';
 export { ReactComponent as bookmark } from './bookmark.svg';
 export { ReactComponent as newpost } from './newpost.svg';
+export { ReactComponent as back } from './back.svg';
