@@ -38,12 +38,12 @@ BlueLoading.args = {
 export const DefaultSignup = Template.bind({});
 DefaultSignup.args = {
   children: '가입하기',
-  width: 'wide',
+  width: 'full-width',
 };
 
 export const BlueSignup = Template.bind({});
 BlueSignup.args = {
   theme: 'blue',
   children: '가입하기',
-  width: 'wide',
+  width: 'full-width',
 };

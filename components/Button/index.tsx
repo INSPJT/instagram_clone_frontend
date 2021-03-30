@@ -6,7 +6,7 @@ export type ButtonType = {
   theme?: 'default' | 'blue';
   loading?: boolean;
   children: React.ReactNode;
-  width?: 'default' | 'wide';
+  width?: 'default' | 'full-width';
 };
 
 function Button({ theme, loading, children, width }: ButtonType): React.ReactElement {
@@ -27,7 +27,7 @@ export default Button;
 
 type StyledButtonType = {
   theme?: 'default' | 'blue';
-  width?: 'default' | 'wide';
+  width?: 'default' | 'full-width';
 };
 
 const StyledButton = styled.button<StyledButtonType>`
@@ -39,7 +39,7 @@ const StyledButton = styled.button<StyledButtonType>`
   color: ${({ theme }) => (theme === 'default' ? 'rgb(38, 38, 38)' : 'rgb(255,255,255)')};
   padding: 5px 9px;
   min-width: 37px;
-  width: ${({ width }) => (width === 'wide' ? '270px' : '')};
+  width: ${({ width }) => (width === 'full-width' ? '100%' : '')};
   display: flex;
   font-size: 14px;
   justify-content: center;
