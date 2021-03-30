@@ -6,11 +6,11 @@
     "build": "next build",
     "start": "next start",
     "type-check": "tsc",
-    "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "precommit": "lint-staged",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix && prettier --write ."
+    "lint:fix": "eslint . --fix && prettier --write .",
+    "storybook": "start-storybook -s ./public -p 6006"
   },
   "lint-staged": {
     "**/*.{ts,tsx}": [
@@ -41,10 +41,11 @@
     "@storybook/addon-essentials": "^6.1.20",
     "@storybook/addon-links": "^6.1.20",
     "@storybook/react": "^6.1.20",
+    "@svgr/webpack": "^5.5.0",
     "@types/node": "^12.12.21",
     "@types/react": "^16.9.16",
     "@types/react-dom": "^16.9.4",
-    "@typescript-eslint/parser": "^4.15.2",
+    "@typescript-eslint/parser": "^4.19.0",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.2.2",
     "eslint-config-airbnb": "^18.2.1",
@@ -59,8 +60,8 @@
     "lint-staged": "^10.5.4",
     "prettier": "^2.2.1",
     "tsconfig-paths-webpack-plugin": "^3.4.1",
-    "typescript": "4.0",
-    "husky": "^4.2.5"
+    "husky": "^4.2.5",
+    "typescript": "^4.2.3"
   },
   "license": "MIT"
 }
