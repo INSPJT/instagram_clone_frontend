@@ -7,11 +7,29 @@
     "start": "next start",
     "type-check": "tsc",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "precommit": "lint-staged",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix && prettier --write .",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "**/*.{ts,tsx}": [
+      "yarn prettier",
+      "yarn lint",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && ./scripts/add_issue_number_into_commit.sh $HUSKY_GIT_PARAMS",
+      "prepare-commit-msg": "./scripts/add_issue_number_into_commit.sh $HUSKY_GIT_PARAMS"
+    }
   },
   "dependencies": {
     "@emotion/css": "^11.1.3",
     "@emotion/styled": "^11.1.5",
+    "axios": "^0.21.1",
     "next": "latest",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
@@ -39,9 +57,11 @@
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^4.2.0",
+    "husky": "^6.0.0",
+    "lint-staged": "^10.5.4",
     "prettier": "^2.2.1",
-    "typescript": "4.0",
-    "tsconfig-paths-webpack-plugin": "^3.4.1"
+    "tsconfig-paths-webpack-plugin": "^3.4.1",
+    "typescript": "4.0"
   },
   "license": "MIT"
 }
