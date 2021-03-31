@@ -1,15 +1,15 @@
 import React from 'react';
 import ListItem from 'components/ListItem';
-import { User } from 'types';
+import { Member } from 'types';
 
 type Props = {
-  items: User[];
+  items: Member[];
 };
 
 const List = ({ items }: Props) => (
   <ul>
     {items.map((item) => (
-      <li key={item.id}>
+      <li key={item.displayId}>
         <ListItem data={item} />
       </li>
     ))}
