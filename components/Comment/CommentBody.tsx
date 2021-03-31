@@ -1,21 +1,19 @@
 import React from 'react';
 import CreatedBottom from 'components/Comment/CommentBottom';
 
-import { User } from 'types/index';
+import { Member } from 'types/index';
 import styled from '@emotion/styled';
 import CommentThumbnail from 'components/Comment/CommentThumbnail';
 
 export type CommentBodyProps = {
   content: string;
-  author: User;
+  author: Member;
   isLike: Boolean;
   likeLength: number;
   created: number;
 };
 
-const CommentBody = (props: CommentBodyProps) => {
-  const { content, author, isLike, likeLength, created } = props;
-
+function CommentBody({ content, author, isLike, likeLength, created }: CommentBodyProps) {
   let heartUrl = '';
   if (isLike) {
     heartUrl = 'https://www.pinclipart.com/picdir/middle/87-877828_save-the-heart-by-ofirma85-instagram-like-icon.png';
@@ -31,7 +29,7 @@ const CommentBody = (props: CommentBodyProps) => {
           <CommentThumbnail author={author} />
           <InlineDiv>
             <div>
-              <InlineH3>{author.nickName}</InlineH3>
+              <InlineH3>{author.displayId}</InlineH3>
               <StyledSpan>{content}</StyledSpan>
             </div>
             <CreatedBottom likeLength={likeLength} created={created} />
@@ -43,7 +41,7 @@ const CommentBody = (props: CommentBodyProps) => {
       </StyledHeart>
     </VerticalMiddleDiv>
   );
-};
+}
 
 const VerticalMiddleDiv = styled.div`
   display: flex;

@@ -1,5 +1,4 @@
 import React from 'react';
-import { map } from 'rxjs/operators';
 
 export type CommentProps = {
   comments: React.ReactNode;

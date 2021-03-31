@@ -1,31 +1,29 @@
 import React from 'react';
-import { User } from 'types/index';
+import { Member } from 'types/index';
 import styled from '@emotion/styled';
 import CreatedItem from 'components/Comment/CreatedItem';
 import CommentThumbnail from 'components/Comment/CommentThumbnail';
 
 export type AuthorCommentProps = {
   content: string;
-  author: User;
+  author: Member;
   created: number;
 };
 
-const AuthorComment = (props: AuthorCommentProps) => {
-  const { content, author, created } = props;
-
+function AuthorComment({ content, author, created }: AuthorCommentProps) {
   return (
     <VerticalMiddleDiv>
       <CommentThumbnail author={author} />
       <InlineDiv>
         <div>
-          <InlineH3>{author.nickName}</InlineH3>
+          <InlineH3>{author.displayId}</InlineH3>
           <StyledSpan>{content}</StyledSpan>
         </div>
         <CreatedItem currentTime={created} />
       </InlineDiv>
     </VerticalMiddleDiv>
   );
-};
+}
 
 const VerticalMiddleDiv = styled.div`
   border-bottom: 1px solid rgba(239, 239, 239, 1);

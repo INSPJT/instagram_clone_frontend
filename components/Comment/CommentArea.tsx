@@ -1,14 +1,13 @@
-import { User } from 'types/index';
+import { Member } from 'types/index';
 import CommentThumbnail from 'components/Comment/CommentThumbnail';
 import styled from '@emotion/styled';
+import React from 'react';
 
 export type CommentAreaProps = {
-  author: User;
+  author: Member;
 };
 
-const CommentArea = (props: CommentAreaProps) => {
-  const { author } = props;
-
+function CommentArea({ author }: CommentAreaProps) {
   return (
     <StyledCommentArea>
       <CommentThumbnail author={author} />
@@ -20,7 +19,7 @@ const CommentArea = (props: CommentAreaProps) => {
       </InlineDiv>
     </StyledCommentArea>
   );
-};
+}
 
 const InlineDiv = styled.div`
   display: inline-block;

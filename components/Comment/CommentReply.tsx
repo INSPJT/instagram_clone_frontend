@@ -1,24 +1,61 @@
 import styled from '@emotion/styled';
-import React from 'react';
+import React, { useState } from 'react';
 
 export type CommentItemProps = {
   replyLength: number;
 };
 
-const CommentReply = (props: CommentItemProps) => {
-  const { replyLength } = props;
+function CommentReply({ replyLength }: CommentItemProps) {
+  const [show, setShow] = useState(false);
 
   if (replyLength < 1) {
     return null;
   }
 
+  function LoadReply() {
+    if (replyLength < 3) {
+      replyLength = 0;
+    } else {
+      replyLength -= 3;
+    }
+  }
+
   return (
-    <StyledReply>
-      <StyledLine />
-      <StyledCommentReply>답글 보기({replyLength}개)</StyledCommentReply>
-    </StyledReply>
+    <>
+      {(show && replyLength > 0) || !show ? ( // 답글 보기 이미 눌림, 남은 답글 있음
+        <>
+          <StyledReply
+            onClick={() => {
+              setShow(true);
+              LoadReply();
+            }}
+          >
+            <StyledLine />
+            <StyledCommentReply>답글 보기({replyLength}개)</StyledCommentReply>
+          </StyledReply>
+
+          <div>test</div>
+          <div>test</div>
+          <div>test</div>
+          <div>test</div>
+        </>
+      ) : (
+        // 답글 보기 이미 눌림, 남은 답글 없음
+        <>
+          <StyledReply onClick={() => setShow(false)}>
+            <StyledLine />
+            <StyledCommentReply>답글 숨기기</StyledCommentReply>
+          </StyledReply>
+
+          <div>test</div>
+          <div>test</div>
+          <div>test</div>
+          <div>test</div>
+        </>
+      )}
+    </>
   );
-};
+}
 
 const StyledReply = styled.button`
   margin-top: 16px;

@@ -3,7 +3,7 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 
 import Comment, { CommentProps } from '../Comment';
 import CommentItem from "../Comment/CommentItem";
-import { User } from 'types';
+import { Member } from 'types';
 import AuthorComment from 'components/Comment/AuthorComment';
 import CommentArea from 'components/Comment/CommentArea';
 import CommentNav from 'components/Comment/CommentNav';
@@ -13,18 +13,16 @@ export default {
   component : Comment,
 } as Meta;
 
-const user1: User = {
-  id: 1,
-  nickName: 'hangneu',
-  thumbnail: 'https://post-phinf.pstatic.net/MjAxODA3MTlfMTIg/MDAxNTMxOTg5ODE5OTAw.edb-H-Rmhr2dFvKAqKA11flZ2k45cRi4Q4IaHirlMF4g.It6ziXN3vtf0R7B2p9DdwOy1hovG7aynuCPwAysStMcg.JPEG/jy180719b2.jpg?type=w1200',
-  link: '',
+const user1: Member = {
+  displayId: 'hangneu',
+  nickname: 'hangneu234',
+  profileImageUrl: 'https://post-phinf.pstatic.net/MjAxODA3MTlfMTIg/MDAxNTMxOTg5ODE5OTAw.edb-H-Rmhr2dFvKAqKA11flZ2k45cRi4Q4IaHirlMF4g.It6ziXN3vtf0R7B2p9DdwOy1hovG7aynuCPwAysStMcg.JPEG/jy180719b2.jpg?type=w1200',
 }
 
-const user2: User = {
-  id: 1,
-  nickName: 'kdongha',
-  thumbnail: 'https://post-phinf.pstatic.net/MjAxODA3MTlfMTIg/MDAxNTMxOTg5ODE5OTAw.edb-H-Rmhr2dFvKAqKA11flZ2k45cRi4Q4IaHirlMF4g.It6ziXN3vtf0R7B2p9DdwOy1hovG7aynuCPwAysStMcg.JPEG/jy180719b2.jpg?type=w1200',
-  link: '',
+const user2: Member = {
+  displayId: 'kdongha',
+  nickname: 'kdongha234',
+  profileImageUrl: 'https://post-phinf.pstatic.net/MjAxODA3MTlfMTIg/MDAxNTMxOTg5ODE5OTAw.edb-H-Rmhr2dFvKAqKA11flZ2k45cRi4Q4IaHirlMF4g.It6ziXN3vtf0R7B2p9DdwOy1hovG7aynuCPwAysStMcg.JPEG/jy180719b2.jpg?type=w1200',
 }
 
 const date = Date.parse('2020/03/26/20:30');
@@ -35,7 +33,7 @@ export const Template: Story<CommentProps> = () => (
     <CommentArea author={user1} />
     <AuthorComment content={'가지마 내 20대~!'} author={user2} created={date} />
     <CommentItem author={user1} created={date} isLike={true}
-                 replyLength={3} content={'킹동하 팬이에요!'} likeLength={3} />
+                 replyLength={1} content={'킹동하 팬이에요!'} likeLength={3} />
   </>
 );
 

@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import React from 'react';
 import CreatedItem from 'components/Comment/CreatedItem';
 
 export type CommentBottomProps = {
@@ -7,9 +6,7 @@ export type CommentBottomProps = {
   created: number;
 };
 
-const CommentBottom = (props: CommentBottomProps) => {
-  const { likeLength, created } = props;
-
+function CommentBottom({ likeLength, created }: CommentBottomProps) {
   return (
     <>
       <CreatedItem currentTime={created} />
@@ -17,7 +14,7 @@ const CommentBottom = (props: CommentBottomProps) => {
       <StyledReplyItem>답글 달기</StyledReplyItem>
     </>
   );
-};
+}
 
 const StyledLikeItem = styled.button`
   color: rgba(142, 142, 142, 1);

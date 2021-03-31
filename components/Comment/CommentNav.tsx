@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
+import React from 'react';
 
-const CommentNav = () => {
+function CommentNav() {
   return (
     <StyledNav>
       <StyledDiv>
@@ -20,7 +21,7 @@ const CommentNav = () => {
       </StyledDiv>
     </StyledNav>
   );
-};
+}
 
 const StyledH1 = styled.h1`
   margin-block-start: 0;

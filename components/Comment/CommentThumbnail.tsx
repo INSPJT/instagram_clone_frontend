@@ -1,21 +1,19 @@
 import styled from '@emotion/styled';
-import React from 'react';
-import { User } from 'types/index';
+import { Member } from 'types/index';
 
 export type CommentThumbnailProps = {
-  author: User;
+  author: Member;
 };
 
-const CommentThumbnail = (props: CommentThumbnailProps) => {
-  const { author } = props;
+function CommentThumbnail({ author }: CommentThumbnailProps) {
   return (
     <StyledCommentThumbnail>
-      <a href={author.link}>
-        <img src={author.thumbnail} alt={`${author.nickName} 님의 프로필 사진`} />
+      <a href={`instagram.com/${author.displayId}`}>
+        <img src={author.profileImageUrl} alt={`${author.displayId} 님의 프로필 사진`} />
       </a>
     </StyledCommentThumbnail>
   );
-};
+}
 
 const StyledCommentThumbnail = styled.div`
   display: inline-block;

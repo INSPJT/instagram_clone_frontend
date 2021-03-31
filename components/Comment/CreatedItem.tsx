@@ -5,8 +5,7 @@ export type CreatedItemProps = {
   currentTime: number;
 };
 
-const CreatedItem = (props: CreatedItemProps) => {
-  const { currentTime } = props;
+function CreatedItem({ currentTime }: CreatedItemProps) {
   // @ts-ignore
   const convertedHour = Math.floor((Date.now() - currentTime) / (1000 * 60 * 60));
   const convertedDay = Math.floor(convertedHour / 24);
@@ -28,7 +27,7 @@ const CreatedItem = (props: CreatedItemProps) => {
     created = `${convertedHour}시간`;
   }
   return <StyledCreatedItem>{created}</StyledCreatedItem>;
-};
+}
 
 const StyledCreatedItem = styled.div`
   display: inline-block;

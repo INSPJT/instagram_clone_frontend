@@ -1,6 +1,15 @@
-export type User = {
+export type Member = {
+  nickname: string;
+  displayId: string;
+  profileImageUrl: string;
+};
+
+export type Comment = {
   id: number;
-  nickName: string;
-  thumbnail: string;
-  link: string;
+  content: string;
+  author: Member;
+  isLike: Boolean;
+  likeLength: number;
+  replyLength: number;
+  created: number; // millisecond
 };
