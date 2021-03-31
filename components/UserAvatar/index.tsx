@@ -6,19 +6,23 @@ export type UserAvatarType = {
   size?: 'small' | 'big';
 };
 
+const DEFAULT_THUMBNAIL =
+  'https://scontent-mxp1-2.cdninstagram.com/v/t51.2885-19/44884218_345707102882519_2446069589734326272_n.jpg?_nc_ht=scontent-mxp1-2.cdninstagram.com&_nc_ohc=q2X-4RcAgecAX-QGx5q&oh=911ea87522a15a1d1657ee9b1070086b&oe=606FB88F&ig_cache_key=YW5vbnltb3VzX3Byb2ZpbGVfcGlj.2';
+
+const defaultProps = {
+  thumbnail: DEFAULT_THUMBNAIL,
+  size: 'small',
+};
+
 function UserAvatar({ size, thumbnail }: UserAvatarType) {
   return (
     <Container size={size}>
-      <Img src={thumbnail} alt="유저 이미지" />
+      <Img src={thumbnail || DEFAULT_THUMBNAIL} alt="유저 이미지" />
     </Container>
   );
 }
 
-UserAvatar.defaultProps = {
-  thumbnail:
-    'https://scontent-mxp1-2.cdninstagram.com/v/t51.2885-19/44884218_345707102882519_2446069589734326272_n.jpg?_nc_ht=scontent-mxp1-2.cdninstagram.com&_nc_ohc=q2X-4RcAgecAX-QGx5q&oh=911ea87522a15a1d1657ee9b1070086b&oe=606FB88F&ig_cache_key=YW5vbnltb3VzX3Byb2ZpbGVfcGlj.2',
-  size: 'small',
-};
+UserAvatar.defaultProps = defaultProps;
 
 export default UserAvatar;
 
