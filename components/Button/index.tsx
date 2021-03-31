@@ -6,11 +6,12 @@ export type ButtonType = {
   theme?: 'default' | 'blue';
   loading?: boolean;
   children: React.ReactNode;
+  full?: boolean;
 };
 
-function Button({ theme, loading, children }: ButtonType): React.ReactElement {
+function Button({ theme, loading, children, full }: ButtonType): React.ReactElement {
   return (
-    <StyledButton theme={theme}>
+    <StyledButton theme={theme} full={full}>
       {loading ? <ClipLoader color={theme === 'default' ? 'black' : 'white'} size={13} /> : children}
     </StyledButton>
   );
@@ -19,12 +20,14 @@ function Button({ theme, loading, children }: ButtonType): React.ReactElement {
 Button.defaultProps = {
   theme: 'default',
   loading: false,
+  full: false,
 };
 
 export default Button;
 
 type StyledButtonType = {
   theme?: 'default' | 'blue';
+  full?: boolean;
 };
 
 const StyledButton = styled.button<StyledButtonType>`
@@ -36,6 +39,7 @@ const StyledButton = styled.button<StyledButtonType>`
   color: ${({ theme }) => (theme === 'default' ? 'rgb(38, 38, 38)' : 'rgb(255,255,255)')};
   padding: 5px 9px;
   min-width: 37px;
+  width: ${({ full }) => (full ? '100%' : '')};
   display: flex;
   font-size: 14px;
   justify-content: center;
