@@ -26,6 +26,8 @@ const WithStaticProps = ({ items }: Props) => (
   </Layout>
 )
 
+
+
 export const getStaticProps: GetStaticProps = async () => {
   // Example for including static props in a Next.js function component page.
   // Don't forget to include the respective types for any props passed into
@@ -35,3 +37,27 @@ export const getStaticProps: GetStaticProps = async () => {
 }
 
 export default WithStaticProps
+
+export const EMAIL_SIGNIN = async(req) => {
+  let status: number = 0;
+  let data: {} = {};
+
+  if (!API_DEV) {
+    try {
+      status = 200;
+      data = EmailSigninData.data;
+    } catch (error) {
+
+    }
+  } else {
+    try {
+      await axios.post(BASE_URL + "/api/signin", req).then((res) => {
+        status = res.status;
+        data = res.data.data;
+      });
+    } catch (error) {
+
+    }
+  }
+  return { status, data };
+}
