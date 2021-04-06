@@ -7,21 +7,23 @@ export type ButtonType = {
   loading?: boolean;
   children: React.ReactNode;
   full?: boolean;
+  onClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 };
 
-function Button({ theme, loading, children, full }: ButtonType): React.ReactElement {
+const defaultProps = {
+  theme: 'default',
+  loading: false,
+};
+
+function Button({ theme, loading, children, onClick, full }: ButtonType & typeof defaultProps): React.ReactElement {
   return (
-    <StyledButton theme={theme} full={full}>
+    <StyledButton theme={theme} full={full} onClick={onClick}>
       {loading ? <ClipLoader color={theme === 'default' ? 'black' : 'white'} size={13} /> : children}
     </StyledButton>
   );
 }
 
-Button.defaultProps = {
-  theme: 'default',
-  loading: false,
-  full: false,
-};
+Button.defaultProps = defaultProps;
 
 export default Button;
 
