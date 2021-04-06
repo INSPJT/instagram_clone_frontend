@@ -1,34 +1,57 @@
 import React from 'react';
-// also exported from '@storybook/react' if you can deal with breaking changes in 6.1
 import { Story, Meta } from '@storybook/react/types-6-0';
-import Input, { InputType } from '.';
-
+import Input from 'components/Input';
+import type { InputProps } from 'components/Input';
 
 export default {
   title: 'Input',
   component: Input,
 } as Meta;
 
-const Template: Story<InputType> = (args) => <Input {...args} />;
+const Template: Story<InputProps> = (args) => <Input {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  label: '이메일'
+  label: '이메일',
+};
+
+export const Accepted = Template.bind({});
+Accepted.args = {
+  label: '이메일',
+  state: 'accepted',
+};
+
+export const Error = Template.bind({});
+Error.args = {
+  label: '이메일',
+  state: 'error',
 };
 
 export const Password = Template.bind({});
 Password.args = {
   label: '비밀번호',
-  inputType: 'password'
+  type: 'password',
+};
+
+export const Number = Template.bind({});
+Number.args = {
+  label: '숫자',
+  type: 'number',
 };
 
 export const GrayTheme = Template.bind({});
 GrayTheme.args = {
   label: '닉네임',
-  theme: 'gray'
+  theme: 'gray',
 };
 
-export const NotLabel = Template.bind({});
-NotLabel.args = {
-  placeholder: '이메일'
+export const PlaceHolder = Template.bind({});
+PlaceHolder.args = {
+  placeholder: '이메일',
+};
+
+export const PlaceHolderGray = Template.bind({});
+PlaceHolderGray.args = {
+  placeholder: '이메일',
+  theme: 'gray',
 };
