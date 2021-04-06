@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import React from 'react';
+import Icon from 'components/Icon/svg';
 
 function CommentNav() {
   return (
@@ -7,7 +8,7 @@ function CommentNav() {
       <StyledDiv>
         <a href="/">
           <span>
-            <StyledImg src="https://img.icons8.com/ios/452/back--v1.png" alt="뒤로가기" />
+            <Icon name="back" size="big" color="#000000" />
           </span>
         </a>
       </StyledDiv>
@@ -16,7 +17,7 @@ function CommentNav() {
       </StyledDiv>
       <StyledDiv>
         <StyledButton type="button">
-          <StyledImg src="https://cdn141.picsart.com/328472243107211.png" alt="DM" />
+          <Icon name="share" size="big" color="#000000" />
         </StyledButton>
       </StyledDiv>
     </StyledNav>
@@ -27,11 +28,6 @@ const StyledH1 = styled.h1`
   margin-block-start: 0;
   margin-block-end: 0;
   font-size: 16px;
-`;
-
-const StyledImg = styled.img`
-  height: 24px;
-  width: 24px;
 `;
 
 const StyledButton = styled.button`

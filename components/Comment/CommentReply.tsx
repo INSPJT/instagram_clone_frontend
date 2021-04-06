@@ -1,12 +1,16 @@
 import styled from '@emotion/styled';
 import React, { useState } from 'react';
+import getComments from 'components/Comment/GetComments';
+import { use } from 'ast-types';
 
 export type CommentItemProps = {
   replyLength: number;
+  commentId: number;
 };
 
-function CommentReply({ replyLength }: CommentItemProps) {
+function CommentReply({ replyLength, commentId }: CommentItemProps) {
   const [show, setShow] = useState(false);
+  const [reply, setReply] = useState([]);
 
   if (replyLength < 1) {
     return null;
@@ -18,6 +22,7 @@ function CommentReply({ replyLength }: CommentItemProps) {
     } else {
       replyLength -= 3;
     }
+    setReply(reply.concat(getComments('reply', commentId)));
   }
 
   return (
@@ -33,11 +38,6 @@ function CommentReply({ replyLength }: CommentItemProps) {
             <StyledLine />
             <StyledCommentReply>답글 보기({replyLength}개)</StyledCommentReply>
           </StyledReply>
-
-          <div>test</div>
-          <div>test</div>
-          <div>test</div>
-          <div>test</div>
         </>
       ) : (
         // 답글 보기 이미 눌림, 남은 답글 없음
@@ -46,11 +46,6 @@ function CommentReply({ replyLength }: CommentItemProps) {
             <StyledLine />
             <StyledCommentReply>답글 숨기기</StyledCommentReply>
           </StyledReply>
-
-          <div>test</div>
-          <div>test</div>
-          <div>test</div>
-          <div>test</div>
         </>
       )}
     </>

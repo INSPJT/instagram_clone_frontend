@@ -34,3 +34,7 @@ yarn-error.log*
 .vercel
 
 .idea
+
+components/Comment/assets/heart.png
+
+components/Comment/assets/heart_filled.png

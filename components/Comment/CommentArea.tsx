@@ -1,20 +1,35 @@
 import { Member } from 'types/index';
 import CommentThumbnail from 'components/Comment/CommentThumbnail';
 import styled from '@emotion/styled';
-import React from 'react';
+import React, { useState } from 'react';
 
 export type CommentAreaProps = {
   author: Member;
 };
 
 function CommentArea({ author }: CommentAreaProps) {
+  function submitComment(e) {}
+
+  const pressedEnter = (e) => {
+    if (e.key === 'Enter') {
+      submitComment(e);
+      e.target.value = '';
+    }
+  };
+
   return (
     <StyledCommentArea>
       <CommentThumbnail author={author} />
       <InlineDiv>
         <StyledForm>
-          <StyledTextArea placeholder="댓글 달기..." />
-          <StyledSubmitButton>게시</StyledSubmitButton>
+          <StyledInput
+            type="textarea"
+            placeholder="댓글 달기..."
+            onKeyPress={(e) => {
+              pressedEnter(e);
+            }}
+          />
+          <StyledSubmitButton onClick={submitComment}>게시</StyledSubmitButton>
         </StyledForm>
       </InlineDiv>
     </StyledCommentArea>
@@ -25,7 +40,7 @@ const InlineDiv = styled.div`
   display: inline-block;
 `;
 
-const StyledTextArea = styled.textarea`
+const StyledInput = styled.input`
   background-color: transparent;
   padding: 0;
   height: 18px;

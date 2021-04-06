@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import CreatedBottom from 'components/Comment/CommentBottom';
 
 import { Member } from 'types/index';
 import styled from '@emotion/styled';
 import CommentThumbnail from 'components/Comment/CommentThumbnail';
+import Icon from 'components/Icon/svg';
 
 export type CommentBodyProps = {
   content: string;
@@ -14,12 +15,29 @@ export type CommentBodyProps = {
 };
 
 function CommentBody({ content, author, isLike, likeLength, created }: CommentBodyProps) {
-  let heartUrl = '';
+  const [like, setLike] = useState(isLike);
+  const [heartColor, setHeartColor] = useState('');
+
   if (isLike) {
-    heartUrl = 'https://www.pinclipart.com/picdir/middle/87-877828_save-the-heart-by-ofirma85-instagram-like-icon.png';
+    setHeartColor('#FD1D1D');
   } else {
-    heartUrl =
-      'https://png.pngitem.com/pimgs/s/63-630682_transparent-heart-doodle-png-transparent-instagram-heart-icon.png';
+    setHeartColor('#FFFFFF');
+  }
+
+  function pressLike() {
+    if (like) {
+      setLike(false);
+      setHeartColor('#FFFFFF');
+    } else {
+      setLike(true);
+      setHeartColor('#FD1D1D');
+    }
+  }
+
+  function commentMenu() {
+    // Modal
+    // if is my comment : 신고, 삭제, 취
+    // else : 신고(red, bold) 취소(black)
   }
 
   return (
@@ -36,9 +54,14 @@ function CommentBody({ content, author, isLike, likeLength, created }: CommentBo
           </InlineDiv>
         </div>
       </InlineDiv>
-      <StyledHeart type="button">
-        <HeartImg src={heartUrl} alt="heart" />
-      </StyledHeart>
+      <StyledButton type="button" onClick={commentMenu}>
+        <Icon name="menu" size="big" />
+      </StyledButton>
+      <StyledButton type="button" onClick={pressLike}>
+        <HeartImg>
+          <Icon name="favorite" color={heartColor} size="small" />
+        </HeartImg>
+      </StyledButton>
     </VerticalMiddleDiv>
   );
 }
@@ -63,13 +86,11 @@ const InlineDiv = styled.div`
   display: inline-block;
 `;
 
-const HeartImg = styled.img`
-  width: 12px;
-  height: 12px;
+const HeartImg = styled.div`
   float: right;
 `;
 
-const StyledHeart = styled.button`
+const StyledButton = styled.button`
   display: inline-block;
   background-color: transparent;
   border: none;
