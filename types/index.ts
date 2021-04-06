@@ -1,17 +1,27 @@
-export type User = {
-  id: number;
-  nickName: string;
-  thumbnail: string;
+export type Member = {
+  nickname: string;
+  displayId: string;
+  profileImageUrl: string;
 };
 
-export type Member = {
+export type Comment = {
+  id: number;
+  content: string;
+  author: Member;
+  isLike: Boolean;
+  likeLength: number;
+  replyLength: number;
+  created: number; // millisecond
+};
+
+export type FeedAuthor = {
   displayId: string;
   isFollowedByMe: boolean;
   profileImageUrl?: string;
 };
 
 export type Feed = {
-  author: Member;
+  author: FeedAuthor;
   body: string;
   commentLength: number;
   commentPreview: any[];
@@ -20,7 +30,7 @@ export type Feed = {
   images: string[];
   isLike: boolean;
   likeLength: number;
-  likeUser: Member;
+  likeUser: FeedAuthor;
   modifiedAt: string;
   viewCount: number;
 };
