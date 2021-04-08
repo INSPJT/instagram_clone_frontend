@@ -68,7 +68,7 @@ function SignupForm({ next }: SignupFormProps): ReactElement {
   const handleSubmit = useCallback<React.MouseEventHandler<HTMLButtonElement>>(
     async (e) => {
       e.preventDefault();
-      const result = await signup({ email, nickname, displayId, password });
+      const data = await signup({ email, nickname, displayId, password });
       next(displayId);
     },
     [email, nickname, displayId, password, next],

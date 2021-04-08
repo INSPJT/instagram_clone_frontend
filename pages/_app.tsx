@@ -1,6 +1,7 @@
 import React from 'react';
 import { AppProps } from 'next/app';
 import { Global, css } from '@emotion/react';
+import { CookiesProvider } from 'react-cookie';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -15,7 +16,9 @@ export default function App({ Component, pageProps }: AppProps) {
           }
         `}
       />
-      <Component {...pageProps}>_App</Component>
+      <CookiesProvider>
+        <Component {...pageProps}>_App</Component>
+      </CookiesProvider>
     </>
   );
 }

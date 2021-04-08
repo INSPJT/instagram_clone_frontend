@@ -1,16 +1,7 @@
-import Link from 'next/link';
-import Image from 'next/image';
-import Layout from '../components/Layout';
+import React, { ReactElement } from 'react';
 
-const IndexPage = () => (
-  <Layout title="Home | Next.js + TypeScript Example">
-    <h1>Hello Next.js 👋</h1>
-    <p>
-      <Link href="/about">
-        <a>About</a>
-      </Link>
-    </p>
-  </Layout>
-);
+function Index(): ReactElement {
+  return <div>Index</div>;
+}
 
-export default IndexPage;
+export default Index;
