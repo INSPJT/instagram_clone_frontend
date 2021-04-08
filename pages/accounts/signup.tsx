@@ -2,6 +2,7 @@ import React, { ReactElement, useCallback, useState } from 'react';
 import styled from '@emotion/styled';
 import SignupForm from 'components/SignupForm';
 import SignupResult from 'components/SignupResult';
+import Logo from 'components/Common/Logo';
 import Link from 'next/link';
 
 function Signup(): ReactElement {
@@ -42,14 +43,6 @@ const Main = styled.main`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`;
-
-const Logo = styled.h1`
-  background-image: url('/img/sprite_core.png');
-  height: 51px;
-  width: 175px;
-  background-size: 440px 411px;
-  background-position: 0 -129px;
 `;
 
 const Paragraph = styled.h2`
