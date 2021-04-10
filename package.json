@@ -34,6 +34,7 @@
     "next": "latest",
     "next-images": "^1.7.0",
     "react": "^16.12.0",
+    "react-cookie": "^4.0.3",
     "react-dom": "^16.12.0",
     "react-spinners": "^0.10.6",
     "yarn": "^1.22.10"
@@ -60,10 +61,10 @@
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^4.2.0",
+    "husky": "^4.2.5",
     "lint-staged": "^10.5.4",
     "prettier": "^2.2.1",
     "tsconfig-paths-webpack-plugin": "^3.4.1",
-    "husky": "^4.2.5",
     "typescript": "^4.2.3"
   },
   "license": "MIT"

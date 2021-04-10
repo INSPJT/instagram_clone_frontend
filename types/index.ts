@@ -1,7 +1,7 @@
 export type Member = {
-  nickname: string;
+  nickname?: string;
   displayId: string;
-  profileImageUrl: string;
+  profileImageUrl: null | string;
 };
 
 export type Comment = {
