@@ -2,7 +2,7 @@ import React from 'react';
 // also exported from '@storybook/react' if you can deal with breaking changes in 6.1
 import { Story, Meta } from '@storybook/react/types-6-0';
 
-import Button, { ButtonType } from '../Button';
+import Button, { ButtonType } from '.';
 
 export default {
   title: 'Button',
@@ -46,17 +46,4 @@ BlueSignup.args = {
   theme: 'blue',
   children: '가입하기',
   full: true,
-};
-
-export const DefaultSignin = Template.bind({});
-DefaultSignin.args = {
-  children: '가입하기',
-  width: 'wide',
-};
-
-export const BlueSignup = Template.bind({});
-BlueSignup.args = {
-  theme: 'blue',
-  children: '가입하기',
-  width: 'wide',
 };

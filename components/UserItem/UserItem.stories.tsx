@@ -15,10 +15,9 @@ const Template: Story<UserItemProps> = (args) => <UserItem {...args} />;
 export const Default = Template.bind({});
 Default.args = {
   user: {
-    id: 0,
     displayId: 'dongha',
-    nickName: '김동하',
-    thumbnail:
+    nickname: '김동하',
+    profileImageUrl:
       'https://post-phinf.pstatic.net/MjAxODA3MTlfMTIg/MDAxNTMxOTg5ODE5OTAw.edb-H-Rmhr2dFvKAqKA11flZ2k45cRi4Q4IaHirlMF4g.It6ziXN3vtf0R7B2p9DdwOy1hovG7aynuCPwAysStMcg.JPEG/jy180719b2.jpg?type=w1200',
   },
   buttonChildren: '삭제',
@@ -27,9 +26,8 @@ Default.args = {
 export const NoName = Template.bind({});
 NoName.args = {
   user: {
-    id: 0,
     displayId: 'dongha',
-    thumbnail:
+    profileImageUrl:
       'https://post-phinf.pstatic.net/MjAxODA3MTlfMTIg/MDAxNTMxOTg5ODE5OTAw.edb-H-Rmhr2dFvKAqKA11flZ2k45cRi4Q4IaHirlMF4g.It6ziXN3vtf0R7B2p9DdwOy1hovG7aynuCPwAysStMcg.JPEG/jy180719b2.jpg?type=w1200',
   },
   buttonChildren: '팔로잉',
@@ -38,9 +36,8 @@ NoName.args = {
 export const BlueTheme = Template.bind({});
 BlueTheme.args = {
   user: {
-    id: 0,
     displayId: 'dongha',
-    thumbnail:
+    profileImageUrl:
       'https://post-phinf.pstatic.net/MjAxODA3MTlfMTIg/MDAxNTMxOTg5ODE5OTAw.edb-H-Rmhr2dFvKAqKA11flZ2k45cRi4Q4IaHirlMF4g.It6ziXN3vtf0R7B2p9DdwOy1hovG7aynuCPwAysStMcg.JPEG/jy180719b2.jpg?type=w1200',
   },
   buttonChildren: '팔로우',
@@ -50,9 +47,8 @@ BlueTheme.args = {
 export const Loading = Template.bind({});
 Loading.args = {
   user: {
-    id: 0,
     displayId: 'dongha',
-    thumbnail:
+    profileImageUrl:
       'https://post-phinf.pstatic.net/MjAxODA3MTlfMTIg/MDAxNTMxOTg5ODE5OTAw.edb-H-Rmhr2dFvKAqKA11flZ2k45cRi4Q4IaHirlMF4g.It6ziXN3vtf0R7B2p9DdwOy1hovG7aynuCPwAysStMcg.JPEG/jy180719b2.jpg?type=w1200',
   },
   buttonChildren: '팔로우',

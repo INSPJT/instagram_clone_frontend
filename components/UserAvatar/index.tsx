@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 
 export type UserAvatarType = {
-  thumbnail?: string;
+  thumbnail?: null | string;
   size?: 'small' | 'big';
 };
 

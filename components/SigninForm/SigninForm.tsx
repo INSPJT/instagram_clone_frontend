@@ -20,7 +20,7 @@ function SigninForm(): ReactElement {
   const disabled = useMemo(() => {
     return !email || !password;
   }, [email, password]);
-  const [cookies, setCookie] = useCookies(['accessToken', 'refreshToken', 'grantType']);
+  const [, setCookie] = useCookies(['accessToken', 'refreshToken', 'grantType']);
   const router = useRouter();
   const { setMember } = useContext(MemberContext);
   const handleSubmit = useCallback<React.MouseEventHandler<HTMLButtonElement>>(

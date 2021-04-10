@@ -1,11 +1,11 @@
 import styled from '@emotion/styled';
 import UserAvatar from 'components/UserAvatar';
 import React, { ReactElement } from 'react';
-import { User } from 'types/index';
+import { Member } from 'types/index';
 import Button from 'components/Button';
 
 export type UserItemProps = {
-  user: User;
+  user: Member;
   onClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   buttonChildren: React.ReactNode;
   buttonTheme?: 'default' | 'blue';
@@ -18,7 +18,7 @@ const defaultProps = {
 };
 
 function UserItem({
-  user: { thumbnail, displayId, nickName },
+  user: { profileImageUrl, displayId, nickname },
   onClick,
   buttonChildren,
   buttonTheme,
@@ -26,10 +26,10 @@ function UserItem({
 }: UserItemProps & typeof defaultProps): ReactElement {
   return (
     <Container>
-      <UserAvatar thumbnail={thumbnail} />
+      <UserAvatar thumbnail={profileImageUrl} />
       <UserInfo>
         <UserId>{displayId}</UserId>
-        {nickName && <UserName>{nickName}</UserName>}
+        {nickname && <UserName>{nickname}</UserName>}
       </UserInfo>
       <div>
         <Button theme={buttonTheme} loading={loading} onClick={onClick}>

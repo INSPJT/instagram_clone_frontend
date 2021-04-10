@@ -3,7 +3,7 @@ import React from 'react';
 
 export type ModalItemProps = {
   children: React.ReactNode;
-  onClick: React.MouseEventHandler<HTMLButtonElement>;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
   bold?: boolean;
   color?: 'red' | 'blue';
 };
