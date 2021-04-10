@@ -24,9 +24,9 @@ function SigninForm(): ReactElement {
     async (e) => {
       e.preventDefault();
       const { accessToken, refreshToken, grantType } = await signin({ email, password });
-      setCookie('accessToken', accessToken);
-      setCookie('refreshToken', refreshToken);
-      setCookie('grantType', grantType);
+      setCookie('accessToken', accessToken, { path: '/' });
+      setCookie('refreshToken', refreshToken, { path: '/' });
+      setCookie('grantType', grantType, { path: '/' });
       router.push('/');
     },
     [email, password],
