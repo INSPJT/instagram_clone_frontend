@@ -25,13 +25,13 @@ function Footer(): ReactElement {
     <Nav>
       {tabList.map(({ name, path }) =>
         name === 'newPost' ? (
-          <Button>
+          <Button key={`${name}Tab`}>
             <Icon name={name as IconTypes} size="big" key={`${name}Icon`} />
           </Button>
         ) : (
-          <Link href={path}>
+          <Link href={path} key={`${name}Tab`}>
             <Tab>
-              <Icon name={name as IconTypes} size="big" key={`${name}Icon`} />
+              <Icon name={name as IconTypes} size="big" />
             </Tab>
           </Link>
         ),
