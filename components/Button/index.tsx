@@ -7,17 +7,20 @@ export type ButtonType = {
   loading?: boolean;
   children: React.ReactNode;
   full?: boolean;
-  onClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  disabled?: boolean;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 };
 
 const defaultProps = {
   theme: 'default',
   loading: false,
+  full: false,
+  disabled: false,
 };
 
-function Button({ theme, loading, children, onClick, full }: ButtonType & typeof defaultProps): React.ReactElement {
+function Button({ theme, loading, children, full, disabled, onClick }: ButtonType): React.ReactElement {
   return (
-    <StyledButton theme={theme} full={full} onClick={onClick}>
+    <StyledButton theme={theme} full={full} disabled={disabled} onClick={onClick}>
       {loading ? <ClipLoader color={theme === 'default' ? 'black' : 'white'} size={13} /> : children}
     </StyledButton>
   );
@@ -45,4 +48,9 @@ const StyledButton = styled.button<StyledButtonType>`
   display: flex;
   font-size: 14px;
   justify-content: center;
+  box-sizing: border-box;
+  &:disabled {
+    pointer-events: none;
+    background-color: ${({ theme }) => (theme === 'blue' ? 'rgba(0,149,246,.3)' : '')};
+  }
 `;

@@ -11,9 +11,10 @@ export type DefaultInputProps = {
   type: 'text' | 'number' | 'password';
   value?: string;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  onBlur?: React.FocusEventHandler<HTMLInputElement>;
 };
 
-function DefaultInput({ theme, placeholder, state, type, value, onChange }: DefaultInputProps): ReactElement {
+function DefaultInput({ theme, placeholder, state, type, value, onChange, onBlur }: DefaultInputProps): ReactElement {
   const [isPassword, setIsPassword] = useState<boolean>(type === 'password');
   const inputType = useMemo(() => {
     if (type !== 'password') {
@@ -24,7 +25,7 @@ function DefaultInput({ theme, placeholder, state, type, value, onChange }: Defa
   const handleToggle = useCallback(() => setIsPassword((prev) => !prev), []);
   return (
     <Container theme={theme}>
-      <Input type={inputType} placeholder={placeholder} value={value} onChange={onChange} />
+      <Input type={inputType} placeholder={placeholder} value={value} onChange={onChange} onBlur={onBlur} />
       <InfoContainer>
         {state !== 'default' && <StateIcon state={state} />}
         {type === 'password' && <PasswordToggleButton isPassword={isPassword} onClick={handleToggle} />}

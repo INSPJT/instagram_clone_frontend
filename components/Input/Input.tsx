@@ -11,6 +11,7 @@ export type InputProps = {
   theme?: 'gray' | 'white';
   type?: 'text' | 'password' | 'number';
   state?: keyof typeof STATE;
+  onBlur?: React.FocusEventHandler<HTMLInputElement>;
 };
 
 const defaultProps = {
@@ -28,12 +29,31 @@ function Input({
   type,
   placeholder,
   state,
+  onBlur,
 }: InputProps & typeof defaultProps): React.ReactElement {
   if (label) {
-    return <LabelInput theme={theme} label={label} type={type} state={state} value={value} onChange={onChange} />;
+    return (
+      <LabelInput
+        theme={theme}
+        label={label}
+        type={type}
+        state={state}
+        value={value}
+        onChange={onChange}
+        onBlur={onBlur}
+      />
+    );
   }
   return (
-    <DefaultInput theme={theme} placeholder={placeholder} type={type} state={state} value={value} onChange={onChange} />
+    <DefaultInput
+      theme={theme}
+      placeholder={placeholder}
+      type={type}
+      state={state}
+      value={value}
+      onChange={onChange}
+      onBlur={onBlur}
+    />
   );
 }
 

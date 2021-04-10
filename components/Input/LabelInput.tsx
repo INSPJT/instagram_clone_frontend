@@ -11,9 +11,18 @@ export type LabelInputProps = {
   type: 'text' | 'number' | 'password';
   value?: string;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  onBlur?: React.FocusEventHandler<HTMLInputElement>;
 };
 
-function LabelInput({ theme, label, state, type, value: defaultValue, onChange }: LabelInputProps): ReactElement {
+function LabelInput({
+  theme,
+  label,
+  state,
+  type,
+  value: defaultValue,
+  onChange,
+  onBlur,
+}: LabelInputProps): ReactElement {
   const [value, setValue] = useState<string>(defaultValue || '');
   useEffect(() => {
     setValue(defaultValue || '');
@@ -37,7 +46,7 @@ function LabelInput({ theme, label, state, type, value: defaultValue, onChange }
     <Container theme={theme}>
       <Label>
         <Span value={value}>{label}</Span>
-        <Input value={value} onChange={handleChange} type={inputType} />
+        <Input value={value} onChange={handleChange} type={inputType} onBlur={onBlur} />
       </Label>
       <InfoContainer>
         {state !== 'default' && <StateIcon state={state} />}
