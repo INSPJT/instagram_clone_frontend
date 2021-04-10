@@ -1,10 +1,12 @@
-import React, { ReactElement, useCallback, useMemo, useState } from 'react';
+import React, { ReactElement, useCallback, useContext, useMemo, useState } from 'react';
 import styled from '@emotion/styled';
 import Input from 'components/Input';
 import Button from 'components/Button';
 import { signin } from 'utils/api/auth';
 import { useCookies } from 'react-cookie';
 import { useRouter } from 'next/router';
+import MemberContext from 'components/MemberProvider/MemberContext';
+import { selectMember } from 'utils/api/member';
 
 function SigninForm(): ReactElement {
   const [email, setEmail] = useState<string>('');
@@ -20,6 +22,7 @@ function SigninForm(): ReactElement {
   }, [email, password]);
   const [cookies, setCookie] = useCookies(['accessToken', 'refreshToken', 'grantType']);
   const router = useRouter();
+  const { setMember } = useContext(MemberContext);
   const handleSubmit = useCallback<React.MouseEventHandler<HTMLButtonElement>>(
     async (e) => {
       e.preventDefault();
@@ -27,6 +30,8 @@ function SigninForm(): ReactElement {
       setCookie('accessToken', accessToken, { path: '/' });
       setCookie('refreshToken', refreshToken, { path: '/' });
       setCookie('grantType', grantType, { path: '/' });
+      const { displayId, profileImageUrl } = await selectMember();
+      setMember?.({ displayId, profileImageUrl });
       router.push('/');
     },
     [email, password],
