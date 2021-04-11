@@ -21,6 +21,8 @@ function CommentArea({ author }: CommentAreaProps) {
 }
 
 const StyledInput = styled.input`
+  display: flex;
+  flex-grow: 1;
   background-color: transparent;
   padding: 0;
   height: 18px;
@@ -29,6 +31,8 @@ const StyledInput = styled.input`
 `;
 
 const StyledForm = styled.form`
+  display: flex;
+  flex-grow: 1;
   align-items: center;
   border-radius: 30px;
   margin-right: 16px;
@@ -49,6 +53,8 @@ const StyledCommentArea = styled.div`
 `;
 
 const StyledSubmitButton = styled.button`
+  display: flex;
+  justify-content: flex-end;
   height: 18px;
   background-color: transparent;
   border: 0;
