@@ -24,20 +24,20 @@ function Carousel({ images, showDots }: CarouselType): ReactElement {
     slideRef.current.style.transform = `translateX(-${currentSlide}00%)`;
   }, [slideRef, currentSlide]);
   return (
-    <>
-      <Container>
-        <SliderContainer ref={slideRef}>
+    <Container>
+      <SliderContainer>
+        <ImageContainer ref={slideRef}>
           {images.map((image) => (
             <Img src={image} alt={image} />
           ))}
-        </SliderContainer>
+        </ImageContainer>
         {hasPrev && <Button onClick={handleClickPrev}>&lt;</Button>}
         {hasNext && (
           <Button align="right" onClick={handleClickNext}>
             &gt;
           </Button>
         )}
-      </Container>
+      </SliderContainer>
       {showDots && (
         <DotsContainer>
           {images.map((_, index) => (
@@ -45,7 +45,7 @@ function Carousel({ images, showDots }: CarouselType): ReactElement {
           ))}
         </DotsContainer>
       )}
-    </>
+    </Container>
   );
 }
 
@@ -55,13 +55,15 @@ Carousel.defaultProps = {
 
 export default Carousel;
 
-const Container = styled.div`
+const Container = styled.div``;
+
+const SliderContainer = styled.div`
   width: 100%;
   overflow-x: hidden;
   position: relative;
 `;
 
-const SliderContainer = styled.div`
+const ImageContainer = styled.div`
   display: flex;
   transition: all 0.3s ease-in-out;
 `;
@@ -92,9 +94,10 @@ const Button = styled.button<ButtonType>`
 `;
 
 const DotsContainer = styled.div`
-  text-align: center;
-  height: 20px;
-  margin-bottom: -20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
 `;
 
 type DotType = {

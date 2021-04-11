@@ -37,9 +37,9 @@ Search.args = {
   size: 'big',
 };
 
-export const Favarite = Template.bind({});
-Favarite.args = {
-  name: 'favorite',
+export const Like = Template.bind({});
+Like.args = {
+  name: 'like',
   size: 'big',
 };
 

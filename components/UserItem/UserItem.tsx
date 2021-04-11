@@ -26,7 +26,7 @@ function UserItem({
 }: UserItemProps & typeof defaultProps): ReactElement {
   return (
     <Container>
-      <UserAvatar thumbnail={profileImageUrl} />
+      <UserAvatar profileImageUrl={profileImageUrl} />
       <UserInfo>
         <UserId>{displayId}</UserId>
         {nickname && <UserName>{nickname}</UserName>}
