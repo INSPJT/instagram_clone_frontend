@@ -6,11 +6,12 @@
     "build": "next build",
     "start": "next start",
     "type-check": "tsc",
-    "build-storybook": "build-storybook",
+    "build-storybook": "build-storybook -s public",
     "precommit": "lint-staged",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix && prettier --write .",
-    "storybook": "start-storybook -s ./public -p 6006"
+    "storybook": "start-storybook -s ./public -p 6006",
+    "deploy": "storybook-to-ghpages"
   },
   "lint-staged": {
     "**/*.{ts,tsx}": [
@@ -45,6 +46,7 @@
     "@storybook/addon-essentials": "^6.1.20",
     "@storybook/addon-links": "^6.1.20",
     "@storybook/react": "^6.1.20",
+    "@storybook/storybook-deployer": "^2.8.7",
     "@svgr/webpack": "^5.5.0",
     "@types/node": "^12.12.21",
     "@types/react": "^16.9.16",
