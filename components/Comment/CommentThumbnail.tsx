@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { Member } from 'types/index';
 import React from 'react';
+import Link from 'next/link';
 
 export type CommentThumbnailProps = {
   author: Member;
@@ -9,9 +10,11 @@ export type CommentThumbnailProps = {
 function CommentThumbnail({ author }: CommentThumbnailProps) {
   return (
     <StyledCommentThumbnail>
-      <a href={`instagram.com/${author.displayId}`}>
-        <StyledImg src={author.profileImageUrl} alt={`${author.displayId} 님의 프로필 사진`} />
-      </a>
+      <Link href={`${author.displayId}`}>
+        <a>
+          <StyledImg src={author.profileImageUrl} alt={`${author.displayId} 님의 프로필 사진`} />
+        </a>
+      </Link>
     </StyledCommentThumbnail>
   );
 }

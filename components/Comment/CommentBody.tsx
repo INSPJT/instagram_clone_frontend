@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import CreatedBottom from 'components/Comment/CommentBottom';
 
-import { FeedAuthor, Member } from "types/index";
+import { FeedAuthor, Member } from 'types/index';
 import styled from '@emotion/styled';
 import CommentThumbnail from 'components/Comment/CommentThumbnail';
 import Icon from 'components/Icon';
@@ -19,13 +19,9 @@ export type CommentBodyProps = {
 function CommentBody({ feedAuthor, commentId, content, author, isLike, likeLength, created }: CommentBodyProps) {
   const [like, setLike] = useState(isLike);
   // Todo: api 구현
-  const putLike = () => {
-    if (like) {
-      setLike(false);
-    } else {
-      setLike(true);
-    }
-  };
+  const toggleLike = useCallback(() => {
+    setLike((prev) => !prev);
+  }, []);
   // Todo: 조건별 모달 구현
   return (
     <>
@@ -42,7 +38,7 @@ function CommentBody({ feedAuthor, commentId, content, author, isLike, likeLengt
             </InlineDiv>
           </div>
         </InlineDiv>
-        <StyledButton type="button" onClick={putLike}>
+        <StyledButton type="button" onClick={toggleLike}>
           <HeartImg>
             <Icon name="favorite" color={like ? '#FD1D1D' : '#FFFFFF'} size="small" />
           </HeartImg>

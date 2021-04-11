@@ -2,6 +2,7 @@ import React from 'react';
 import { FeedAuthor } from 'types/index';
 import styled from '@emotion/styled';
 import Created from 'components/Comment/Created';
+import Link from 'next/link';
 
 export type AuthorCommentProps = {
   content: string;
@@ -9,18 +10,22 @@ export type AuthorCommentProps = {
   created: string;
 };
 
-function AuthorComment({ content, author, created }: AuthorCommentProps) {
+function AuthorComment({ content, author: { displayId, profileImageUrl }, created }: AuthorCommentProps) {
   return (
     <VerticalMiddleDiv>
       <StyledCommentThumbnail>
-        <StyledAtag href={`instagram.com/${author.displayId}`}>
-          <StyledImg src={author.profileImageUrl} alt={`${author.displayId} 님의 프로필 사진`} />
-        </StyledAtag>
+        <Link href={`${displayId}`}>
+          <StyledAtag>
+            <StyledImg src={profileImageUrl} alt={`${displayId} 님의 프로필 사진`} />
+          </StyledAtag>
+        </Link>
       </StyledCommentThumbnail>
       <InlineDiv>
         <div>
           <InlineH3>
-            <StyledAtag href={`/instagram.com/${author.displayId}`}> {author.displayId}</StyledAtag>
+            <Link href={`${displayId}`}>
+              <StyledAtag> {displayId}</StyledAtag>
+            </Link>
           </InlineH3>
           <StyledSpan>{content}</StyledSpan>
         </div>
