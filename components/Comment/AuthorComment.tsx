@@ -10,7 +10,6 @@ export type AuthorCommentProps = {
 };
 
 function AuthorComment({ content, author, created }: AuthorCommentProps) {
-  // Todo : form 요소 크기
   return (
     <VerticalMiddleDiv>
       <StyledCommentThumbnail>
