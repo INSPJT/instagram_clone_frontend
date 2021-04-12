@@ -32,9 +32,11 @@ function FeedBody({
       {likeLength > 0 && <LikeSection likeUser={likeUser} likeLength={likeLength} />}
       <ContentBody body={body} author={author} />
       {commentLength > 0 && <CommentLengthContainer>댓글 {commentLength}개 모두 보기</CommentLengthContainer>}
-      {commentPreview.map((previewComment) => (
-        <CommentPreview {...previewComment} />
-      ))}
+      <CommentPreviewList>
+        {commentPreview.map((previewComment) => (
+          <CommentPreview {...previewComment} />
+        ))}
+      </CommentPreviewList>
     </Container>
   );
 }
@@ -51,4 +53,8 @@ const Container = styled.div`
 const CommentLengthContainer = styled.div`
   color: rgb(142, 142, 142);
   margin-bottom: 4px;
+`;
+
+const CommentPreviewList = styled.ul`
+  all: unset;
 `;

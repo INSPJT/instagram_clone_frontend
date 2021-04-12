@@ -14,6 +14,7 @@ function CommentPreview({ author: { displayId }, content }: PreviewComment): Rea
 
 export default CommentPreview;
 
-const Container = styled.div`
+const Container = styled.li`
   margin-bottom: 4px;
+  list-style: none;
 `;
