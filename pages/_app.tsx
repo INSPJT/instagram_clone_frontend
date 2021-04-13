@@ -3,8 +3,11 @@ import { AppProps } from 'next/app';
 import { Global, css } from '@emotion/react';
 import { CookiesProvider } from 'react-cookie';
 import MemberProvider from 'components/MemberProvider/MemberProvider';
+import Layout from 'components/Layout/Layout';
+import Footer from 'components/Footer';
 
 export default function App({ Component, pageProps }: AppProps) {
+  const footer = <Footer />;
   return (
     <>
       <Global
@@ -19,7 +22,9 @@ export default function App({ Component, pageProps }: AppProps) {
       />
       <CookiesProvider>
         <MemberProvider>
-          <Component {...pageProps}>_App</Component>
+          <Layout header={null} footer={footer}>
+            <Component {...pageProps}>_App</Component>
+          </Layout>
         </MemberProvider>
       </CookiesProvider>
     </>
