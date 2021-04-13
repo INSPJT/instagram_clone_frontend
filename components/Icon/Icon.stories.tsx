@@ -31,9 +31,9 @@ Activity.args = {
   size: 'big',
 };
 
-export const Search = Template.bind({});
-Search.args = {
-  name: 'search',
+export const Explore = Template.bind({});
+Explore.args = {
+  name: 'explore',
   size: 'big',
 };
 
@@ -63,7 +63,7 @@ Bookmark.args = {
 
 export const Newpost = Template.bind({});
 Newpost.args = {
-  name: 'newpost',
+  name: 'newPost',
   size: 'big',
 };
 
