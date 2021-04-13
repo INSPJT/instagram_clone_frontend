@@ -2,7 +2,7 @@ name: CI/CD
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
 env:
   DOCKER_IMAGE: ghcr.io/inspjt/instagram_clone_frontend
   VERSION: ${{ github.sha }}
