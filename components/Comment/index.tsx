@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import Icon from 'components/Icon';
-import { Comment, Feed, Member } from 'types/index';
+import { Comment, Feed } from 'types/index';
 import CommentNav from 'components/Comment/CommentNav';
-import CommentArea from 'components/Comment/CommentArea';
 import AuthorComment from 'components/Comment/AuthorComment';
 
 export type CommentsProps = {
@@ -21,8 +20,7 @@ function CommentComponent({ feed, commentSize }: CommentsProps) {
   return (
     <>
       <CommentNav />
-      <!-- CommentArea author = {me} -->
-      <CommentArea author={} />
+      {/* CommentArea author = {me} */}
       <AuthorComment content="가지마 내 20대~!" author={feedAuthor} created={createdAt} />
       {commentLength > 0 ? ( // 남은 댓글 있음
         <>

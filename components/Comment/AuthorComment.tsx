@@ -14,7 +14,7 @@ export type AuthorCommentProps = {
 function AuthorComment({ content, author: { displayId, profileImageUrl }, created }: AuthorCommentProps) {
   return (
     <VerticalMiddleDiv>
-      <!-- Todo: UserAvatar에 링크달기 -->
+      {/*-- Todo: UserAvatar에 링크달기 */ }
       <ThumbnailDiv>
         <UserAvatar thumbnail={profileImageUrl} />
       </ThumbnailDiv>
