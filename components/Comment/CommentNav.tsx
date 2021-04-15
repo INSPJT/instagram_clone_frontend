@@ -8,11 +8,9 @@ function CommentNav() {
   return (
     <StyledNav>
       <StyledDiv>
-        <a href="/">
-          <StyledIcon>
-            <Icon name="back" size="big" color="#000000" />
-          </StyledIcon>
-        </a>
+        <StyledIcon>
+          <Icon name="back" size="big" color="#000000" />
+        </StyledIcon>
       </StyledDiv>
       <StyledDiv>
         <StyledH1>댓글</StyledH1>
@@ -26,7 +24,7 @@ function CommentNav() {
   );
 }
 
-const StyledIcon = styled.div`
+const StyledIcon = styled.button`
   transform: rotate(-90deg);
 `;
 
@@ -43,7 +41,6 @@ const StyledButton = styled.button`
 
 const StyledDiv = styled.div`
   position: relative;
-  display: block;
 `;
 
 const StyledNav = styled.div`

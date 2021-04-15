@@ -20,25 +20,26 @@ export const getTimeDiff = (currentTime: string) => {
   const convertedMonth = differenceInMonths(createdTime, now);
   const convertedYear = differenceInYears(createdTime, now);
 
-  let created;
-
   if (convertedYear >= 1) {
-    created = `${convertedYear}년`;
-  } else if (convertedMonth >= 1) {
-    created = `${convertedMonth}월`;
-  } else if (convertedWeek >= 1) {
-    created = `${convertedWeek}주`;
-  } else if (convertedDay >= 1) {
-    created = `${convertedDay}일`;
-  } else if (convertedHour >= 1) {
-    created = `${convertedHour}시간`;
-  } else if (convertedMinute >= 1) {
-    created = `${convertedMinute}분`;
-  } else if (convertedSecond >= 1) {
-    created = `${convertedSecond}초`;
-  } else {
-    created = '지금';
+    return `${convertedYear}년`;
   }
-
-  return created;
+  if (convertedMonth >= 1) {
+    return `${convertedMonth}월`;
+  }
+  if (convertedWeek >= 1) {
+    return `${convertedWeek}주`;
+  }
+  if (convertedDay >= 1) {
+    return `${convertedDay}일`;
+  }
+  if (convertedHour >= 1) {
+    return `${convertedHour}시간`;
+  }
+  if (convertedMinute >= 1) {
+    return `${convertedMinute}분`;
+  }
+  if (convertedSecond >= 1) {
+    return `${convertedSecond}초`;
+  }
+  return '지금';
 };

@@ -29,6 +29,7 @@ const InlineDiv = styled.div`
 
 const StyledTextArea = styled.textarea`
   display: flex;
+  resize: none;
   flex-grow: 1;
   background-color: transparent;
   padding: 0;

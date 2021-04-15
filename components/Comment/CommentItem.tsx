@@ -1,31 +1,25 @@
 import React from 'react';
-import { FeedAuthor, Member } from 'types/index';
-import CommentBody from 'components/Comment/CommentBody';
+import { Comment } from 'types/index';
+import Body from 'components/Comment/Body';
 import ReplyComponent from 'components/Comment/ReplyComponent';
 import styled from '@emotion/styled';
 
 export type CommentItemProps = {
-  feedAuthor: FeedAuthor;
-  id: number;
-  content: string;
-  author: Member;
-  isLike: Boolean;
-  likeLength: number;
-  replyLength: number;
-  created: string;
+  comment: Comment;
 };
 
-function CommentItem({ feedAuthor, id, content, author, isLike, likeLength, replyLength, created }: CommentItemProps) {
+function CommentItem({ comment }: CommentItemProps) {
+  const { replyLength, id, feedAuthorDisplayId, likeLength, isLike, created, content, author } = comment;
   return (
     <Styledli>
-      <CommentBody
-        feedAuthor={feedAuthor}
-        commentId={id}
-        created={created}
-        isLike={isLike}
+      <Body
+        feedAuthorDisplayId={feedAuthorDisplayId}
         author={author}
-        likeLength={likeLength}
         content={content}
+        created={created}
+        id={id}
+        isLike={isLike}
+        likeLength={likeLength}
       />
       {replyLength > 0 && <ReplyComponent replySize={replyLength} commentId={id} />}
     </Styledli>

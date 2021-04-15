@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
-import Created from 'components/Comment/Created';
+import { getTimeDiff } from 'utils/api/time';
+import React from 'react';
 
 export type CommentBottomProps = {
   likeLength: number;
@@ -9,12 +10,25 @@ export type CommentBottomProps = {
 function CommentBottom({ likeLength, created }: CommentBottomProps) {
   return (
     <StyledDiv>
-      <Created currentTime={created} />
+      <StyledCreatedItem>{getTimeDiff(created)}</StyledCreatedItem>
       <StyledLikeItem>좋아요 {likeLength}개</StyledLikeItem>
       <StyledReplyItem>답글 달기</StyledReplyItem>
     </StyledDiv>
   );
 }
+
+const StyledCreatedItem = styled.div`
+  display: inline-block;
+  justify-content: space-between;
+  color: rgb(142, 142, 142);
+  margin-right: 12px;
+  font-size: 12px;
+  font-weight: 400;
+  text-align: left;
+  border: none;
+  background-color: transparent;
+`;
+
 const StyledDiv = styled.div`
   display: flex;
 `;

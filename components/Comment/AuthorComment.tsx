@@ -1,9 +1,8 @@
 import React from 'react';
 import { FeedAuthor } from 'types/index';
 import styled from '@emotion/styled';
-import Created from 'components/Comment/Created';
-import Link from 'next/link';
 import UserAvatar from 'components/UserAvatar';
+import { getTimeDiff } from 'utils/api/time';
 
 export type AuthorCommentProps = {
   content: string;
@@ -14,24 +13,35 @@ export type AuthorCommentProps = {
 function AuthorComment({ content, author: { displayId, profileImageUrl }, created }: AuthorCommentProps) {
   return (
     <VerticalMiddleDiv>
-      {/*-- Todo: UserAvatar에 링크달기 */ }
+      {/* Todo: UserAvatar에 링크달기 */}
       <ThumbnailDiv>
         <UserAvatar thumbnail={profileImageUrl} />
       </ThumbnailDiv>
-      <InlineDiv>
+      <div>
         <div>
           <InlineH3>
-            <Link href={`${displayId}`}>
-              <StyledAnchor> {displayId}</StyledAnchor>
-            </Link>
+            {/* Todo: displayId에 링크 달기 <Link href={}> */}
+            <StyledAnchor> {displayId}</StyledAnchor>
           </InlineH3>
           <StyledSpan>{content}</StyledSpan>
         </div>
-        <Created currentTime={created} />
-      </InlineDiv>
+        <StyledCreatedItem>{getTimeDiff(created)}</StyledCreatedItem>
+      </div>
     </VerticalMiddleDiv>
   );
 }
+
+const StyledCreatedItem = styled.div`
+  display: inline-block;
+  justify-content: space-between;
+  color: rgb(142, 142, 142);
+  margin-right: 12px;
+  font-size: 12px;
+  font-weight: 400;
+  text-align: left;
+  border: none;
+  background-color: transparent;
+`;
 
 const StyledAnchor = styled.a`
   text-decoration: none;
@@ -59,10 +69,6 @@ const InlineH3 = styled.h3`
 const ThumbnailDiv = styled.div`
   display: inline-block;
   margin: 0 16px;
-`;
-
-const InlineDiv = styled.div`
-  display: inline-block;
 `;
 
 export default AuthorComment;

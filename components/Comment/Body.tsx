@@ -1,15 +1,14 @@
 import React, { useCallback, useState } from 'react';
 import CreatedBottom from 'components/Comment/CommentBottom';
 
-import { FeedAuthor, Member } from 'types/index';
+import { Member } from 'types/index';
 import styled from '@emotion/styled';
 import Icon from 'components/Icon';
 import UserAvatar from 'components/UserAvatar';
-import Link from 'next/link';
 
-export type CommentBodyProps = {
-  feedAuthor: FeedAuthor;
-  commentId: number;
+export type BodyProps = {
+  feedAuthorDisplayId: string;
+  id: number;
   content: string;
   author: Member;
   isLike: Boolean;
@@ -17,21 +16,13 @@ export type CommentBodyProps = {
   created: string;
 };
 
-function CommentBody({
-  feedAuthor,
-  commentId,
-  content,
-  author: { displayId, profileImageUrl },
-  isLike,
-  likeLength,
-  created,
-}: CommentBodyProps) {
+function Body({ feedAuthorDisplayId, id, content, author:{displayId, profileImageUrl}, isLike, likeLength, created }: BodyProps) {
   const [like, setLike] = useState(isLike);
-  // Todo: api 구현
+  // Todo: api 구현, comment id 필요
   const toggleLike = useCallback(() => {
     setLike((prev) => !prev);
   }, []);
-  // Todo: 조건별 모달 구현
+  // Todo: 조건별 모달 구현, feedAuthor displayId 필요
   return (
     <StyledDiv>
       <VerticalMiddleDiv>
@@ -40,9 +31,8 @@ function CommentBody({
         </ThumbnailDiv>
         <InlineDiv>
           <InlineH3>
-            <Link href={`${displayId}`}>
-              <StyledAnchor>{displayId}</StyledAnchor>
-            </Link>
+            {/* Todo: displayId link 걸기 <Link href=> */}
+            <StyledAnchor>{displayId}</StyledAnchor>
           </InlineH3>
           <StyledSpan>{content}</StyledSpan>
           <CreatedBottom likeLength={likeLength} created={created} />
@@ -98,4 +88,4 @@ const StyledButton = styled.button`
   border: none;
 `;
 
-export default CommentBody;
+export default Body;

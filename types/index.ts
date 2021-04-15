@@ -5,24 +5,24 @@ export type Member = {
 };
 
 export type Comment = {
-  feed: Feed;
+  feedAuthorDisplayId: string;
   id: number;
   content: string;
   author: Member;
   isLike: Boolean;
   likeLength: number;
   replyLength: number;
-  created: number; // millisecond
+  created: string;
 };
 
 export type Reply = {
-  feedAuthor: FeedAuthor;
+  feedAuthorDisplayId: string;
   id: number;
   content: string;
   author: Member;
   isLike: Boolean;
   likeLength: number;
-  created: number; // millisecond
+  created: string;
 };
 
 export type FeedAuthor = {

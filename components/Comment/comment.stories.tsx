@@ -1,16 +1,16 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
-import { FeedAuthor, Member } from 'types';
+import { FeedAuthor, Member, Comment } from 'types';
 import AuthorComment from 'components/Comment/AuthorComment';
 import CommentArea from 'components/Comment/CommentArea';
 import CommentNav from 'components/Comment/CommentNav';
 import CommentItem from './CommentItem';
-import Comment, { CommentsProps } from '.';
+import CommentComponent , { CommentsProps } from '.';
 
 export default {
   title: 'Comment',
-  component: Comment,
+  component: CommentComponent,
 } as Meta;
 
 const user1: Member = {
@@ -28,6 +28,16 @@ const author: FeedAuthor = {
 };
 
 const date = '2020-03-26 20:30:11';
+const comment: Comment = {
+  feedAuthorDisplayId: author.displayId,
+  id: 1,
+  author: user1,
+  created: date,
+  isLike: true,
+  replyLength: 1,
+  content: '킹동하 팬이에요!',
+  likeLength: 3,
+};
 
 export const Template: Story<CommentsProps> = () => (
   <>
@@ -35,16 +45,7 @@ export const Template: Story<CommentsProps> = () => (
     <CommentArea author={author} />
     <AuthorComment content="가지마 내 20대~!" author={author} created={date} />
     <ul>
-      <CommentItem
-        feedAuthor={author}
-        id={1}
-        author={user1}
-        created={date}
-        isLike
-        replyLength={1}
-        content="킹동하 팬이에요!"
-        likeLength={3}
-      />
+      <CommentItem comment={comment} />
     </ul>
   </>
 );
