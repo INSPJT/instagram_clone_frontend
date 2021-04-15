@@ -8,16 +8,19 @@ export type CommentBottomProps = {
 
 function CommentBottom({ likeLength, created }: CommentBottomProps) {
   return (
-    <>
+    <StyledDiv>
       <Created currentTime={created} />
       <StyledLikeItem>좋아요 {likeLength}개</StyledLikeItem>
       <StyledReplyItem>답글 달기</StyledReplyItem>
-    </>
+    </StyledDiv>
   );
 }
+const StyledDiv = styled.div`
+  display: flex;
+`;
 
 const StyledLikeItem = styled.button`
-  color: rgba(142, 142, 142, 1);
+  color: rgb(142, 142, 142);
   font-size: 12px;
   font-weight: 600;
   text-align: center;
@@ -30,7 +33,7 @@ const StyledLikeItem = styled.button`
 `;
 
 const StyledReplyItem = styled.button`
-  color: rgba(142, 142, 142, 1);
+  color: rgb(142, 142, 142);
   font-size: 12px;
   font-weight: 600;
   text-align: center;

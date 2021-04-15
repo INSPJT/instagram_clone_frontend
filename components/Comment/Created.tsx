@@ -13,7 +13,8 @@ function Created({ currentTime }: CreatedItemProps) {
 
 const StyledCreatedItem = styled.div`
   display: inline-block;
-  color: rgba(142, 142, 142, 1);
+  justify-content: space-between;
+  color: rgb(142, 142, 142);
   margin-right: 12px;
   font-size: 12px;
   font-weight: 400;

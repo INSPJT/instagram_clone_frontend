@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Icon from 'components/Icon';
-import { Comment, Feed } from 'types/index';
+import { Comment, Feed, Member } from 'types/index';
 import CommentNav from 'components/Comment/CommentNav';
 import CommentArea from 'components/Comment/CommentArea';
 import AuthorComment from 'components/Comment/AuthorComment';
@@ -16,11 +16,13 @@ function CommentComponent({ feed, commentSize }: CommentsProps) {
   const [comments, setComments] = useState<Comment[]>([]);
   const [commentLength, setCommentLength] = useState(commentSize);
   // Todo: api 구현 map <CommentItem> []
+  // Todo: context Api로 me 변수 만들기
   const getCommentList = () => {};
   return (
     <>
       <CommentNav />
-      <CommentArea author={feedAuthor} />
+      <!-- CommentArea author = {me} -->
+      <CommentArea author={} />
       <AuthorComment content="가지마 내 20대~!" author={feedAuthor} created={createdAt} />
       {commentLength > 0 ? ( // 남은 댓글 있음
         <>

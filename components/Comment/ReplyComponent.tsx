@@ -13,16 +13,20 @@ function ReplyComponent({ replySize, commentId }: CommentItemProps) {
   const [replyLength, setReplyLength] = useState(replySize);
   // Todo : api 구현
   const getReplyList = () => {};
+  const openReply = () => {
+    setShow(true);
+    getReplyList();
+  };
+  const closeReply = () => {
+    setShow(false);
+  }
 
   return (
     <>
       {(show && replyLength > 0) || !show ? ( // 답글 보기 이미 눌림, 남은 답글 있음
         <ul>
           <StyledReply
-            onClick={() => {
-              setShow(true);
-              getReplyList();
-            }}
+            onClick={openReply}
           >
             <StyledLine />
             <StyledCommentReply>답글 보기({replyLength}개)</StyledCommentReply>
@@ -31,7 +35,7 @@ function ReplyComponent({ replySize, commentId }: CommentItemProps) {
       ) : (
         // 답글 보기 이미 눌림, 남은 답글 없음
         <ul>
-          <StyledReply onClick={() => setShow(false)}>
+          <StyledReply onClick={closeReply}>
             <StyledLine />
             <StyledCommentReply>답글 숨기기</StyledCommentReply>
           </StyledReply>
@@ -49,7 +53,7 @@ const StyledReply = styled.button`
 `;
 
 const StyledLine = styled.div`
-  border-bottom: 1px solid rgba(142, 142, 142, 1);
+  border-bottom: 1px solid rgb(142, 142, 142);
   display: inline-block;
   height: 0;
   margin-right: 16px;
@@ -58,7 +62,7 @@ const StyledLine = styled.div`
 `;
 
 const StyledCommentReply = styled.span`
-  color: rgba(142, 142, 142, 1);
+  color: rgb(142, 142, 142);
   font-size: 12px;
   font-weight: 600;
   text-align: center;

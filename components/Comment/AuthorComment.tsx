@@ -3,6 +3,7 @@ import { FeedAuthor } from 'types/index';
 import styled from '@emotion/styled';
 import Created from 'components/Comment/Created';
 import Link from 'next/link';
+import UserAvatar from 'components/UserAvatar';
 
 export type AuthorCommentProps = {
   content: string;
@@ -13,18 +14,15 @@ export type AuthorCommentProps = {
 function AuthorComment({ content, author: { displayId, profileImageUrl }, created }: AuthorCommentProps) {
   return (
     <VerticalMiddleDiv>
-      <StyledCommentThumbnail>
-        <Link href={`${displayId}`}>
-          <StyledAtag>
-            <StyledImg src={profileImageUrl} alt={`${displayId} 님의 프로필 사진`} />
-          </StyledAtag>
-        </Link>
-      </StyledCommentThumbnail>
+      <!-- Todo: UserAvatar에 링크달기 -->
+      <ThumbnailDiv>
+        <UserAvatar thumbnail={profileImageUrl} />
+      </ThumbnailDiv>
       <InlineDiv>
         <div>
           <InlineH3>
             <Link href={`${displayId}`}>
-              <StyledAtag> {displayId}</StyledAtag>
+              <StyledAnchor> {displayId}</StyledAnchor>
             </Link>
           </InlineH3>
           <StyledSpan>{content}</StyledSpan>
@@ -35,28 +33,13 @@ function AuthorComment({ content, author: { displayId, profileImageUrl }, create
   );
 }
 
-const StyledAtag = styled.a`
+const StyledAnchor = styled.a`
   text-decoration: none;
   color: inherit;
 `;
 
-const StyledImg = styled.img`
-  height: 42px;
-  width: 42px;
-`;
-
-const StyledCommentThumbnail = styled.div`
-  display: inline-block;
-  border-radius: 70%;
-  overflow: hidden;
-  object-fit: cover;
-  height: 42px;
-  width: 42px;
-  margin: 0 16px;
-`;
-
 const VerticalMiddleDiv = styled.div`
-  border-bottom: 1px solid rgba(239, 239, 239, 1);
+  border-bottom: 1px solid rgb(239, 239, 239);
   margin-bottom: 16px;
   padding-bottom: 16px;
   display: flex;
@@ -71,6 +54,11 @@ const InlineH3 = styled.h3`
   display: inline-block;
   font-size: 18px;
   margin-right: 10px;
+`;
+
+const ThumbnailDiv = styled.div`
+  display: inline-block;
+  margin: 0 16px;
 `;
 
 const InlineDiv = styled.div`

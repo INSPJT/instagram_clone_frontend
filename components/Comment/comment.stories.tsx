@@ -1,13 +1,12 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
-import { FeedAuthor, Member, Feed } from 'types';
+import { FeedAuthor, Member } from 'types';
 import AuthorComment from 'components/Comment/AuthorComment';
 import CommentArea from 'components/Comment/CommentArea';
 import CommentNav from 'components/Comment/CommentNav';
 import CommentItem from './CommentItem';
 import Comment, { CommentsProps } from '.';
-import CommentComponent from ".";
 
 export default {
   title: 'Comment',
