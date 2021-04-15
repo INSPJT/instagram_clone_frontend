@@ -1,17 +1,28 @@
 export type Member = {
   nickname?: string;
   displayId: string;
-  profileImageUrl: null | string;
+  profileImageUrl?: string;
 };
 
 export type Comment = {
+  feedAuthorDisplayId: string;
   id: number;
   content: string;
   author: Member;
   isLike: Boolean;
   likeLength: number;
   replyLength: number;
-  created: number; // millisecond
+  created: string;
+};
+
+export type Reply = {
+  feedAuthorDisplayId: string;
+  id: number;
+  content: string;
+  author: Member;
+  isLike: Boolean;
+  likeLength: number;
+  created: string;
 };
 
 export type FeedAuthor = {
